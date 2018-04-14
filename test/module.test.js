@@ -76,7 +76,7 @@ describe('universal', () => {
       '<feed xmlns="http://www.w3.org/2005/Atom">\n' +
       '    <id>http://example.com/</id>\n' +
       '    <title>Feed Title</title>\n' +
-      '    <updated>2000-07-13T22:00:00Z</updated>\n' +
+      '    <updated>' + new Date(200, 6, 14).toUTCString() + '</updated>\n' +
       '    <generator>awesome</generator>\n' +
       '    <author>\n' +
       '        <name>John Doe</name>\n' +

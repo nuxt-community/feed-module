@@ -19,7 +19,7 @@ describe('generator', async () => {
         '        <title>Feed Title</title>\n' +
         '        <link>http://example.com/</link>\n' +
         '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>Thu, 13 Jul 2000 22:00:00 GMT</lastBuildDate>\n' +
+        '        <lastBuildDate>' + new Date(2000, 6, 14).toUTCString() + '</lastBuildDate>\n' +
         '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
         '        <generator>awesome</generator>\n' +
         '        <image>\n' +
@@ -56,7 +56,7 @@ describe('universal', () => {
       '        <title>Feed Title</title>\n' +
       '        <link>http://example.com/</link>\n' +
       '        <description>This is my personal feed!</description>\n' +
-      '        <lastBuildDate>Thu, 13 Jul 2000 22:00:00 GMT</lastBuildDate>\n' +
+      '        <lastBuildDate>' + new Date(2000, 6, 14).toUTCString() + '</lastBuildDate>\n' +
       '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
       '        <generator>awesome</generator>\n' +
       '        <image>\n' +
@@ -125,7 +125,7 @@ describe('universal', () => {
         '        <title>Feed ' + i + '</title>\n' +
         '        <link>http://example.com/</link>\n' +
         '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>Thu, 13 Jul 2000 22:00:00 GMT</lastBuildDate>\n' +
+        '        <lastBuildDate>' + new Date(2000, 6, 14).toUTCString() + '</lastBuildDate>\n' +
         '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
         '        <generator>awesome</generator>\n' +
         '        <image>\n' +

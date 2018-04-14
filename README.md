@@ -15,7 +15,7 @@
 * Three different feed types (RSS 2.0, ATOM 1.0 and JSON 1.0)
 * As many feeds as you like!
 * Completely customizable. Need to fetch data before? No problem!
-* Work with **all modes** (yes, even generate!)
+* Works with **all modes** (yes, even generate!)
 
 ## Setup
 

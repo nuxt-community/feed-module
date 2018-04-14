@@ -9,7 +9,6 @@ cache:
 install:
   - npm install
 script:
-  - commitlint-travis
   - npm t
 after_success:
 - npm run coverage

@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/feed)
 [![Build Status](https://travis-ci.org/nuxt-community/feed-module.svg?branch=master)](https://travis-ci.org/nuxt-community/feed-module)
 [![codecov](https://codecov.io/gh/nuxt-community/feed-module/branch/master/graph/badge.svg)](https://codecov.io/gh/nuxt-community/feed-module)
-[![Dependencies](https://david-dm.org//status.svg?style=flat-square)](https://david-dm.org/nuxt-community/feed-module)
+[![Dependencies](https://david-dm.org/nuxt-community/feed-module/status.svg?style=flat-square)](https://david-dm.org/nuxt-community/feed-module)
 [![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
 
 > 

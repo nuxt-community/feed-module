@@ -128,6 +128,52 @@ describe('universal', () => {
     expect(await get('/feed.xml')).toBe('')
   }, timeout)
 
+  test('object rss', async () => {
+    nuxt = await setupNuxt(require('./fixture/configs/object_rss'))
+    let html = await get('/feed.xml')
+    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
+      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
+      '    <channel>\n' +
+      '        <title>Feed Title</title>\n' +
+      '        <link>http://example.com/</link>\n' +
+      '        <description>This is my personal feed!</description>\n' +
+      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
+      '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
+      '        <generator>awesome</generator>\n' +
+      '        <image>\n' +
+      '            <title>Feed Title</title>\n' +
+      '            <url>http://example.com/image.png</url>\n' +
+      '            <link>http://example.com/</link>\n' +
+      '        </image>\n' +
+      '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
+      '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
+      '    </channel>\n' +
+      '</rss>')
+  }, timeout)
+
+  test('function rss', async () => {
+    nuxt = await setupNuxt(require('./fixture/configs/function_rss'))
+    let html = await get('/feed.xml')
+    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
+      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
+      '    <channel>\n' +
+      '        <title>Feed Title</title>\n' +
+      '        <link>http://example.com/</link>\n' +
+      '        <description>This is my personal feed!</description>\n' +
+      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
+      '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
+      '        <generator>awesome</generator>\n' +
+      '        <image>\n' +
+      '            <title>Feed Title</title>\n' +
+      '            <url>http://example.com/image.png</url>\n' +
+      '            <link>http://example.com/</link>\n' +
+      '        </image>\n' +
+      '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
+      '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
+      '    </channel>\n' +
+      '</rss>')
+  }, timeout)
+
   test('multi rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/multi_rss'))
 

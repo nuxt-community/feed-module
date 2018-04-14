@@ -96,7 +96,52 @@ Feed creation is based on the [feed](https://github.com/jpmonette/feed) package.
 Please use it as reference and further documentation for modifying the `feed` object
 that is passed to the `create` function.
 
-Using the `create` function gives you unlimited possibilities to customize your feed!
+Using the `create` function gives you almost unlimited possibilities to customize your feed!
+
+### Using a feed factory function
+
+There is one more thing. Imagine you want to add a feed per blog category, but you don't want
+to add every category by hand.
+
+You can use a `factory function` to solve that problem. Instead of a hardcoded array, you can setup
+a function that will be called up on feed generation. The function **must** return an array with all
+feeds you want to generate.
+
+```js
+{
+ feed: async () => {
+     const posts = (await axios.get('https://my-url.com/posts')).data
+     const tags = (await axios.get('https://my-url.com/tags')).data
+     
+     return tags.map(t => {
+       const relevantPosts = posts.filter(/*filter posts somehow*/)
+ 
+       return {
+         path: `/${t.slug}.xml`, // The route to your feed.
+         async create (feed) {
+           feed.options = {
+             title: `${t.name} - My blog`,
+             description: `All posts related to ${t.name} of my blog`,
+           }
+ 
+           relevantPosts.forEach(post => {
+             feed.addItem({
+               title: post.title,
+               id: post.id,
+               link: `https://blog.lichter.io/posts/${post.slug}`,
+               description: post.excerpt,
+               content: post.text
+             })
+           })
+         },
+         cacheTime: 1000 * 60 * 15,
+         type: 'rss2'
+       }
+     })
+   },
+}
+```
+
 
 ## Development
 

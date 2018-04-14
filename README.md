@@ -1,7 +1,7 @@
 # Feed module - Everyone deserves RSS, Atom and Json
 [![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/feed)
 [![npm](https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/feed)
-[![CircleCI](https://img.shields.io/circleci/project/github/.svg?style=flat-square)](https://circleci.com/gh/)
+[![Build Status](https://travis-ci.org/nuxt-community/feed-module.svg?branch=master)](https://travis-ci.org/nuxt-community/feed-module)
 [![Codecov](https://img.shields.io/codecov/c/github/.svg?style=flat-square)](https://codecov.io/gh/)
 [![Dependencies](https://david-dm.org//status.svg?style=flat-square)](https://david-dm.org/)
 [![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)

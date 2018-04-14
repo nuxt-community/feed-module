@@ -73,7 +73,7 @@
     "eslint-plugin-promise": "latest",
     "eslint-plugin-standard": "latest",
     "eslint-plugin-vue": "latest",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.1",
     "jest": "latest",
     "jsdom": "latest",
     "nuxt": "latest",

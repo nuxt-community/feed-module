@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "8"
+  - "9"
+cache:
+  npm: true
+  directories:
+    - node_modules
+install:
+  - npm install
+script:
+  - commitlint-travis
+  - npm t
+after_success:
+- npm run coverage

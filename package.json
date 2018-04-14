@@ -24,7 +24,8 @@
     "lint": "eslint lib test",
     "test": "npm run lint && jest",
     "release": "standard-version && git push --follow-tags && npm publish",
-    "commitlint": "commitlint -e $GIT_PARAMS"
+    "commitlint": "commitlint -e $GIT_PARAMS",
+    "coverage": "codecov"
   },
   "eslintIgnore": [
     "lib/templates/*.*"

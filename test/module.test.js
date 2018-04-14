@@ -4,14 +4,28 @@ const fs = require('fs-extra')
 
 const timeout = 60 * 1000
 
+const toATOM = (d) => {
+  const pad = (n) => n < 10 ? '0' + n : n
+
+  return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' +
+    pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + 'Z'
+}
+const date = {
+  rss: (new Date(2000, 6, 14)).toUTCString(),
+  atom: toATOM(new Date(2000, 6, 14))
+}
+
 describe('generator', async () => {
   test('simple rss generator', async () => {
     const nuxt = new Nuxt(require('./fixture/configs/simple_rss'))
+    const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
+    fs.removeSync(filePath)
+
     const generator = new Generator(nuxt, new Builder(nuxt))
     await generator.initiate()
     const routes = await generator.initRoutes()
     expect(routes.includes('/feed.xml')).toBe(true)
-    const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
+
     expect(fs.readFileSync(filePath, { encoding: 'utf8' }))
       .toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
@@ -19,7 +33,7 @@ describe('generator', async () => {
         '        <title>Feed Title</title>\n' +
         '        <link>http://example.com/</link>\n' +
         '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>' + new Date(2000, 6, 14).toUTCString() + '</lastBuildDate>\n' +
+        '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
         '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
         '        <generator>awesome</generator>\n' +
         '        <image>\n' +
@@ -56,7 +70,7 @@ describe('universal', () => {
       '        <title>Feed Title</title>\n' +
       '        <link>http://example.com/</link>\n' +
       '        <description>This is my personal feed!</description>\n' +
-      '        <lastBuildDate>' + new Date(2000, 6, 14).toUTCString() + '</lastBuildDate>\n' +
+      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
       '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
       '        <generator>awesome</generator>\n' +
       '        <image>\n' +
@@ -76,7 +90,7 @@ describe('universal', () => {
       '<feed xmlns="http://www.w3.org/2005/Atom">\n' +
       '    <id>http://example.com/</id>\n' +
       '    <title>Feed Title</title>\n' +
-      '    <updated>' + new Date(200, 6, 14).toUTCString() + '</updated>\n' +
+      '    <updated>' + date.atom + '</updated>\n' +
       '    <generator>awesome</generator>\n' +
       '    <author>\n' +
       '        <name>John Doe</name>\n' +
@@ -118,14 +132,14 @@ describe('universal', () => {
     nuxt = await setupNuxt(require('./fixture/configs/multi_rss'))
 
     await ['/feed.xml', '/feed1.xml'].forEach(async (path, i) => {
-      let html = await get(path)
+      const html = await get(path)
       expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
         '    <channel>\n' +
         '        <title>Feed ' + i + '</title>\n' +
         '        <link>http://example.com/</link>\n' +
         '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>' + new Date(2000, 6, 14).toISOString() + '</lastBuildDate>\n' +
+        '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
         '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
         '        <generator>awesome</generator>\n' +
         '        <image>\n' +

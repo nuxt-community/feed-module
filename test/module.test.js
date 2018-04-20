@@ -45,7 +45,9 @@ describe('generator', async () => {
         '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
         '    </channel>\n' +
         '</rss>')
+    const { errors } = await generator.generate()
     fs.removeSync(filePath)
+    expect(errors.length).toBe(0)
   }, timeout)
 })
 

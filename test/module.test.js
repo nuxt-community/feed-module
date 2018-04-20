@@ -23,8 +23,6 @@ describe('generator', async () => {
 
     const generator = new Generator(nuxt, new Builder(nuxt))
     await generator.initiate()
-    const routes = await generator.initRoutes()
-    expect(routes.includes('/feed.xml')).toBe(true)
 
     expect(fs.readFileSync(filePath, { encoding: 'utf8' }))
       .toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
@@ -45,7 +43,9 @@ describe('generator', async () => {
         '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
         '    </channel>\n' +
         '</rss>')
+    const { errors } = await generator.generate()
     fs.removeSync(filePath)
+    expect(errors.length).toBe(0)
   }, timeout)
 })
 

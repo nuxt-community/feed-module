@@ -69,6 +69,7 @@ A simple create function could look like this:
 create = async feed => {
   feed.options = {
     title: 'My blog',
+    link: 'https://my-url.com/feed.xml',
     description: 'This is my personal feed!',
   }
 
@@ -122,6 +123,7 @@ feeds you want to generate.
          async create (feed) {
            feed.options = {
              title: `${t.name} - My blog`,
+             link: `https://my-url.com/${t.slug}.xml`,
              description: `All posts related to ${t.name} of my blog`,
            }
  

@@ -14,7 +14,7 @@
     "url": "git+https://github.com/nuxt-community/feed-module"
   },
   "bugs": {
-    "url": "https://github.com/nuxt-community/feed-moduleissues"
+    "url": "https://github.com/nuxt-community/feed-module/issues"
   },
   "publishConfig": {
     "access": "public"

@@ -71,19 +71,20 @@ create = async feed => {
     title: 'My blog',
     description: 'This is my personal feed!',
   }
-  
+
   const posts = await axios.get('https://blog.lichter.io/posts/').data
-  posts.forEach(post => { 
+  posts.forEach(post => {
     feed.addItem({
-        title: post.title,
-        id: post.url,
-        link: post.url,
-        description: post.description,
-        content: post.content
+      title: post.title,
+      id: post.url,
+      link: post.url,
+      description: post.description,
+      content: post.content
+    })
   })
-  
+
   feed.addCategory('Nuxt.js')
-  
+
   feed.addContributor({
     name: 'Alexander Lichter',
     email: 'example@lichter.io',

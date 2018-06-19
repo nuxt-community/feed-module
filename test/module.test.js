@@ -125,6 +125,22 @@ describe('universal', () => {
       '}')
   }, timeout)
 
+  test('non-latin rss', async () => {
+    nuxt = await setupNuxt(require('./fixture/configs/non_latin_rss'))
+    let html = await get('/feed.xml')
+    expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Популярные новости России и мира</title>
+        <link>http://site.ru/feed.xml</link>
+        <description>Новости России и мира на сайте site.ru</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+    </channel>
+</rss>`)
+  }, timeout)
+
   test('no type set', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/no_type'))
     expect(await get('/feed.xml')).toBe('')

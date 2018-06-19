@@ -1,7 +1,7 @@
 const { Nuxt, Builder, Generator } = require('nuxt')
 const path = require('path')
 const fs = require('fs-extra')
-
+const oldFs = require('fs')
 const timeout = 60 * 1000
 
 const toATOM = (d) => {
@@ -23,31 +23,31 @@ describe('generator', async () => {
 
     const generator = new Generator(nuxt, new Builder(nuxt))
     await generator.initiate()
-    const routes = await generator.initRoutes()
-    expect(routes.includes('/feed.xml')).toBe(true)
+    await generator.initRoutes()
 
     expect(fs.readFileSync(filePath, { encoding: 'utf8' }))
-      .toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
-        '    <channel>\n' +
-        '        <title>Feed Title</title>\n' +
-        '        <link>http://example.com/</link>\n' +
-        '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
-        '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
-        '        <generator>awesome</generator>\n' +
-        '        <image>\n' +
-        '            <title>Feed Title</title>\n' +
-        '            <url>http://example.com/image.png</url>\n' +
-        '            <link>http://example.com/</link>\n' +
-        '        </image>\n' +
-        '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
-        '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
-        '    </channel>\n' +
-        '</rss>')
+      .toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>`)
     const { errors } = await generator.generate()
     fs.removeSync(filePath)
-    expect(errors).toBe({ errors: [] })
+    expect(Array.isArray(errors)).toBe(true)
+    expect(errors.length).toBe(0)
   }, timeout)
 })
 
@@ -61,68 +61,75 @@ describe('universal', () => {
   const closeNuxt = async () => {
     await nuxt.close()
   }
-  afterEach(closeNuxt)
+  afterEach(async () => {
+    const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
+    if (oldFs.existsSync(filePath)) {
+      fs.removeSync(filePath)
+    }
+
+    await closeNuxt()
+  })
 
   test('simple rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_rss'))
     let html = await get('/feed.xml')
-    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
-      '    <channel>\n' +
-      '        <title>Feed Title</title>\n' +
-      '        <link>http://example.com/</link>\n' +
-      '        <description>This is my personal feed!</description>\n' +
-      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
-      '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
-      '        <generator>awesome</generator>\n' +
-      '        <image>\n' +
-      '            <title>Feed Title</title>\n' +
-      '            <url>http://example.com/image.png</url>\n' +
-      '            <link>http://example.com/</link>\n' +
-      '        </image>\n' +
-      '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
-      '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
-      '    </channel>\n' +
-      '</rss>')
+    expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>`)
   }, timeout)
   test('simple atom', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_atom'))
     let html = await get('/feed.xml')
-    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-      '<feed xmlns="http://www.w3.org/2005/Atom">\n' +
-      '    <id>http://example.com/</id>\n' +
-      '    <title>Feed Title</title>\n' +
-      '    <updated>' + date.atom + '</updated>\n' +
-      '    <generator>awesome</generator>\n' +
-      '    <author>\n' +
-      '        <name>John Doe</name>\n' +
-      '        <email>johndoe@example.com</email>\n' +
-      '        <uri>https://example.com/johndoe</uri>\n' +
-      '    </author>\n' +
-      '    <link rel="alternate" href="http://example.com/"/>\n' +
-      '    <link rel="self" href="https://example.com/atom"/>\n' +
-      '    <subtitle>This is my personal feed!</subtitle>\n' +
-      '    <logo>http://example.com/image.png</logo>\n' +
-      '    <icon>http://example.com/favicon.ico</icon>\n' +
-      '    <rights>All rights reserved 2013, John Doe</rights>\n' +
-      '</feed>')
+    expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://example.com/</id>
+    <title>Feed Title</title>
+    <updated>${date.atom}</updated>
+    <generator>awesome</generator>
+    <author>
+        <name>John Doe</name>
+        <email>johndoe@example.com</email>
+        <uri>https://example.com/johndoe</uri>
+    </author>
+    <link rel="alternate" href="http://example.com/"/>
+    <link rel="self" href="https://example.com/atom"/>
+    <subtitle>This is my personal feed!</subtitle>
+    <logo>http://example.com/image.png</logo>
+    <icon>http://example.com/favicon.ico</icon>
+    <rights>All rights reserved 2013, John Doe</rights>
+</feed>`)
   }, timeout)
   test('simple json', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_json'))
     let html = await get('/feed.xml')
-    expect(html).toBe('{\n' +
-      '    "version": "https://jsonfeed.org/version/1",\n' +
-      '    "title": "Feed Title",\n' +
-      '    "home_page_url": "http://example.com/",\n' +
-      '    "feed_url": "https://example.com/json",\n' +
-      '    "description": "This is my personal feed!",\n' +
-      '    "icon": "http://example.com/image.png",\n' +
-      '    "author": {\n' +
-      '        "name": "John Doe",\n' +
-      '        "url": "https://example.com/johndoe"\n' +
-      '    },\n' +
-      '    "items": []\n' +
-      '}')
+    expect(html).toBe(`{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Feed Title",
+    "home_page_url": "http://example.com/",
+    "feed_url": "https://example.com/json",
+    "description": "This is my personal feed!",
+    "icon": "http://example.com/image.png",
+    "author": {
+        "name": "John Doe",
+        "url": "https://example.com/johndoe"
+    },
+    "items": []
+}`)
   }, timeout)
 
   test('non-latin rss', async () => {
@@ -149,47 +156,47 @@ describe('universal', () => {
   test('object rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/object_rss'))
     let html = await get('/feed.xml')
-    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
-      '    <channel>\n' +
-      '        <title>Feed Title</title>\n' +
-      '        <link>http://example.com/</link>\n' +
-      '        <description>This is my personal feed!</description>\n' +
-      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
-      '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
-      '        <generator>awesome</generator>\n' +
-      '        <image>\n' +
-      '            <title>Feed Title</title>\n' +
-      '            <url>http://example.com/image.png</url>\n' +
-      '            <link>http://example.com/</link>\n' +
-      '        </image>\n' +
-      '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
-      '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
-      '    </channel>\n' +
-      '</rss>')
+    expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>`)
   }, timeout)
 
   test('function rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/function_rss'))
     let html = await get('/feed.xml')
-    expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-      '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
-      '    <channel>\n' +
-      '        <title>Feed Title</title>\n' +
-      '        <link>http://example.com/</link>\n' +
-      '        <description>This is my personal feed!</description>\n' +
-      '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
-      '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
-      '        <generator>awesome</generator>\n' +
-      '        <image>\n' +
-      '            <title>Feed Title</title>\n' +
-      '            <url>http://example.com/image.png</url>\n' +
-      '            <link>http://example.com/</link>\n' +
-      '        </image>\n' +
-      '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
-      '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
-      '    </channel>\n' +
-      '</rss>')
+    expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>`)
   }, timeout)
 
   test('multi rss', async () => {
@@ -197,24 +204,24 @@ describe('universal', () => {
 
     await ['/feed.xml', '/feed1.xml'].forEach(async (path, i) => {
       const html = await get(path)
-      expect(html).toBe('<?xml version="1.0" encoding="utf-8"?>\n' +
-        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n' +
-        '    <channel>\n' +
-        '        <title>Feed ' + i + '</title>\n' +
-        '        <link>http://example.com/</link>\n' +
-        '        <description>This is my personal feed!</description>\n' +
-        '        <lastBuildDate>' + date.rss + '</lastBuildDate>\n' +
-        '        <docs>http://blogs.law.harvard.edu/tech/rss</docs>\n' +
-        '        <generator>awesome</generator>\n' +
-        '        <image>\n' +
-        '            <title>Feed Title</title>\n' +
-        '            <url>http://example.com/image.png</url>\n' +
-        '            <link>http://example.com/</link>\n' +
-        '        </image>\n' +
-        '        <copyright>All rights reserved 2013, John Doe</copyright>\n' +
-        '        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>\n' +
-        '    </channel>\n' +
-        '</rss>')
+      expect(html).toBe(`<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Feed ${i}</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>${date.rss}</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href="https://example.com/atom" rel="self" type="application/rss+xml"/>
+    </channel>
+</rss>`)
     })
   }, timeout)
 })

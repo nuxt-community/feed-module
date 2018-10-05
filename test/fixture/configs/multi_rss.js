@@ -21,7 +21,7 @@ module.exports = {
           favicon: 'http://example.com/favicon.ico',
           updated: new Date(2000, 6, 14), // optional, default = today
           copyright: 'All rights reserved 2013, John Doe',
-          generator: 'awesome', // optional, default = 'Feed for Node.js'
+          generator: 'awesome', // optional, default = 'https://github.com/nuxt-community/feed-module'
           feedLinks: {
             json: 'https://example.com/json',
             atom: 'https://example.com/atom'
@@ -47,7 +47,7 @@ module.exports = {
           favicon: 'http://example.com/favicon.ico',
           updated: new Date(2000, 6, 14), // optional, default = today
           copyright: 'All rights reserved 2013, John Doe',
-          generator: 'awesome', // optional, default = 'Feed for Node.js'
+          generator: 'awesome', // optional, default = 'https://github.com/nuxt-community/feed-module'
           feedLinks: {
             json: 'https://example.com/json',
             atom: 'https://example.com/atom'

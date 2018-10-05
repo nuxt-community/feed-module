@@ -73,7 +73,7 @@ create = async feed => {
     description: 'This is my personal feed!',
   }
 
-  const posts = await axios.get('https://blog.lichter.io/posts/').data
+  const posts = await (axios.get('https://blog.lichter.io/posts/')).data
   posts.forEach(post => {
     feed.addItem({
       title: post.title,

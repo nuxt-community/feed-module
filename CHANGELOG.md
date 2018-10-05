@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/nuxt-community/feed-module/compare/v0.1.1...v0.2.0) (2018-10-05)
+
+
+### Bug Fixes
+
+* fix typo in package.json ([ff69039](https://github.com/nuxt-community/feed-module/commit/ff69039))
+
+
+### Features
+
+* set default generator to nuxt-feed module ([2cfc35b](https://github.com/nuxt-community/feed-module/commit/2cfc35b))
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/nuxt-community/feed-module/compare/v0.1.0...v0.1.1) (2018-04-20)
 

@@ -4,11 +4,32 @@ const fs = require('fs-extra')
 const oldFs = require('fs')
 const timeout = 60 * 1000
 
-const toATOM = (d) => {
-  const pad = (n) => n < 10 ? '0' + n : n
+const toATOM = d => {
+  const pad = n => n < 10 ? `0${n}` : n
+  const padMs = n => {
+    if (n >= 100) {
+      return n
+    }
+    if (n > 10) {
+      return `0${n}`
+    }
+    return `00${n}`
+  }
 
-  return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' +
-    pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + 'Z'
+  return [
+    d.getUTCFullYear(),
+    '-',
+    pad(d.getUTCMonth() + 1),
+    '-', pad(d.getUTCDate()),
+    'T',
+    pad(d.getUTCHours()),
+    ':',
+    pad(d.getUTCMinutes()),
+    ':',
+    pad(d.getUTCSeconds()),
+    '.',
+    padMs(d.getUTCMilliseconds()),
+    'Z'].join('')
 }
 const date = {
   rss: (new Date(2000, 6, 14)).toUTCString(),
@@ -25,8 +46,7 @@ describe('generator', async () => {
     await generator.initiate()
     await generator.initRoutes()
 
-    expect(fs.readFileSync(filePath, { encoding: 'utf8' }))
-      .toBe(`<?xml version="1.0" encoding="utf-8"?>
+    expect(fs.readFileSync(filePath, { encoding: 'utf8' })).toBe(`<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Feed Title</title>
@@ -143,7 +163,7 @@ describe('universal', () => {
         <description>Новости России и мира на сайте site.ru</description>
         <lastBuildDate>${date.rss}</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
-        <generator>Feed for Node.js</generator>
+        <generator>https://github.com/nuxt-community/feed-module</generator>
     </channel>
 </rss>`)
   }, timeout)

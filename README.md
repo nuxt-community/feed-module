@@ -66,7 +66,11 @@ actually modifies your upcoming feed.
 A simple create function could look like this:
 
 ```js
-create = async feed => {
+//Import axios into your nuxt.config.js
+const axios = require('axios')
+
+// In your `feed` array:
+async create (feed) {
   feed.options = {
     title: 'My blog',
     link: 'https://my-url.com/feed.xml',

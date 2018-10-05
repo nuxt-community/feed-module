@@ -73,7 +73,7 @@ create = async feed => {
     description: 'This is my personal feed!',
   }
 
-  const posts = await (axios.get('https://blog.lichter.io/posts/')).data
+  const posts = await (axios.get('https://api.blog.lichter.io/posts')).data
   posts.forEach(post => {
     feed.addItem({
       title: post.title,
@@ -112,8 +112,8 @@ feeds you want to generate.
 ```js
 {
  feed: async () => {
-     const posts = (await axios.get('https://my-url.com/posts')).data
-     const tags = (await axios.get('https://my-url.com/tags')).data
+     const posts = (await axios.get('https://api.blog.lichter.io/posts')).data
+     const tags = (await axios.get('https://api.blog.lichter.io/tags')).data
      
      return tags.map(t => {
        const relevantPosts = posts.filter(/*filter posts somehow*/)

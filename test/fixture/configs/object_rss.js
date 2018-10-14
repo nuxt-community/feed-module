@@ -17,7 +17,7 @@ module.exports = {
         link: 'http://example.com/',
         image: 'http://example.com/image.png',
         favicon: 'http://example.com/favicon.ico',
-        updated: new Date(2000, 6, 14), // optional, default = today
+        updated: new Date(Date.UTC(2000, 6, 14)), // optional, default = today
         copyright: 'All rights reserved 2013, John Doe',
         generator: 'awesome', // optional, default = 'https://github.com/nuxt-community/feed-module'
         feedLinks: {

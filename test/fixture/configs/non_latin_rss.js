@@ -15,7 +15,7 @@ module.exports = {
           title: 'Популярные новости России и мира',
           link: 'http://site.ru/feed.xml',
           description: 'Новости России и мира на сайте site.ru',
-          updated: new Date(2000, 6, 14)
+          updated: new Date(Date.UTC(2000, 6, 14))
         }
         feed.addContributor({
           name: 'Команда проекта site.ru',

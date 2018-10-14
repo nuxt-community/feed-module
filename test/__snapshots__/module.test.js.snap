@@ -7,7 +7,7 @@ exports[`generator simple rss generator 1`] = `
         <title>Feed Title</title>
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Fri, 14 Jul 2000 04:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <image>
@@ -28,7 +28,7 @@ exports[`universal function rss 1`] = `
         <title>Feed Title</title>
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Fri, 14 Jul 2000 04:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <image>
@@ -51,7 +51,7 @@ exports[`universal non-latin rss 1`] = `
         <title>Популярные новости России и мира</title>
         <link>http://site.ru/feed.xml</link>
         <description>Новости России и мира на сайте site.ru</description>
-        <lastBuildDate>Fri, 14 Jul 2000 04:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
     </channel>
@@ -65,7 +65,7 @@ exports[`universal object rss 1`] = `
         <title>Feed Title</title>
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Fri, 14 Jul 2000 04:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <image>
@@ -84,7 +84,7 @@ exports[`universal simple atom 1`] = `
 <feed xmlns=\\"http://www.w3.org/2005/Atom\\">
     <id>http://example.com/</id>
     <title>Feed Title</title>
-    <updated>2000-07-14T04:00:00.000Z</updated>
+    <updated>2000-07-14T00:00:00.000Z</updated>
     <generator>awesome</generator>
     <author>
         <name>John Doe</name>
@@ -123,7 +123,7 @@ exports[`universal simple rss 1`] = `
         <title>Feed Title</title>
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
-        <lastBuildDate>Fri, 14 Jul 2000 04:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <image>

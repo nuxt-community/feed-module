@@ -4,12 +4,12 @@ node_js:
   - "9"
   - "10"
 cache:
-  npm: true
+  yarn: true
   directories:
     - node_modules
 install:
-  - npm install
+  - yarn
 script:
-  - npm t
+  - yarn test
 after_success:
-- npm run coverage
+- yarn coverage

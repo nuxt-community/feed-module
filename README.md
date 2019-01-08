@@ -74,11 +74,11 @@ const axios = require('axios')
 async create (feed) {
   feed.options = {
     title: 'My blog',
-    link: 'https://my-url.com/feed.xml',
+    link: 'https://lichter.io/feed.xml',
     description: 'This is my personal feed!',
   }
 
-  const posts = await (axios.get('https://api.blog.lichter.io/posts')).data
+  const posts = await (axios.get('https://blog-api.lichter.io/posts')).data
   posts.forEach(post => {
     feed.addItem({
       title: post.title,
@@ -117,8 +117,8 @@ feeds you want to generate.
 ```js
 {
  feed: async () => {
-     const posts = (await axios.get('https://api.blog.lichter.io/posts')).data
-     const tags = (await axios.get('https://api.blog.lichter.io/tags')).data
+     const posts = (await axios.get('https://blog-api.lichter.io/posts')).data
+     const tags = (await axios.get('https://blog-api.lichter.io/tags')).data
      
      return tags.map(t => {
        const relevantPosts = posts.filter(/*filter posts somehow*/)
@@ -128,7 +128,7 @@ feeds you want to generate.
          async create (feed) {
            feed.options = {
              title: `${t.name} - My blog`,
-             link: `https://my-url.com/${t.slug}.xml`,
+             link: `https://blog.lichter.io/${t.slug}.xml`,
              description: `All posts related to ${t.name} of my blog`,
            }
  

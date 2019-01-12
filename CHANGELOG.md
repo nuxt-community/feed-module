@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/nuxt-community/feed-module/compare/v0.2.0...v1.0.0) (2019-01-12)
+
+
+### Bug Fixes
+
+* log error before fatal ([#26](https://github.com/nuxt-community/feed-module/issues/26)) ([2a120a5](https://github.com/nuxt-community/feed-module/commit/2a120a5))
+* send utf-8 charset as header ([#18](https://github.com/nuxt-community/feed-module/issues/18)) ([a412ee4](https://github.com/nuxt-community/feed-module/commit/a412ee4))
+
+
+### Features
+
+* introduce data property ([23e819e](https://github.com/nuxt-community/feed-module/commit/23e819e))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/nuxt-community/feed-module/compare/v0.1.1...v0.2.0) (2018-10-05)
 

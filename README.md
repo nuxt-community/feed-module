@@ -24,7 +24,7 @@
 - Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`
 
 ```js
-{
+export default {
   modules: [
     // Simple usage
     '@nuxtjs/feed',
@@ -44,7 +44,7 @@ So.. how to get these feeds working now?
 ### Configuration object overview
 
 ```js
-{
+export default {
  //...
  feed: [
    // A default feed configuration object
@@ -52,9 +52,10 @@ So.. how to get these feeds working now?
      path: '/feed.xml', // The route to your feed.
      async create (feed) {}, // The create function (see below)
      cacheTime: 1000 * 60 * 15, // How long should the feed be cached
-     type: 'rss2' // Can be: rss2, atom1, json1
+     type: 'rss2', // Can be: rss2, atom1, json1
+     
    }
- ],
+ ]
  //...
 }
 ```
@@ -68,10 +69,10 @@ A simple create function could look like this:
 
 ```js
 //Import axios into your nuxt.config.js
-const axios = require('axios')
+import axios from 'axios'
 
 // In your `feed` array:
-async create (feed) {
+async create (feed){
   feed.options = {
     title: 'My blog',
     link: 'https://lichter.io/feed.xml',
@@ -146,7 +147,7 @@ feeds you want to generate.
          type: 'rss2'
        }
      })
-   },
+   }
 }
 ```
 

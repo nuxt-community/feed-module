@@ -151,6 +151,17 @@ feeds you want to generate.
 }
 ```
 
+In case you want to pass in data into the factory function, you can use a *factory object*.
+
+```js
+{
+  feed: {
+    data: ['Your data here']
+    factory: (dataFromFeedDotData) => {/* your factory function */}
+  }
+}
+```
+
 
 ## Development
 

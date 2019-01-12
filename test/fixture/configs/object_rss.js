@@ -9,9 +9,10 @@ module.exports = {
   },
   modules: ['@@'],
   feed: {
-    create (feed) {
+    data: { title: 'Feed Title' },
+    create (feed, data) {
       feed.options = {
-        title: 'Feed Title',
+        title: data.title,
         description: 'This is my personal feed!',
         id: 'http://example.com/',
         link: 'http://example.com/',

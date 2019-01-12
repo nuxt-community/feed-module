@@ -74,6 +74,12 @@ describe('universal', () => {
     expect(html).toMatchSnapshot()
   }, timeout)
 
+  test('factory rss', async () => {
+    nuxt = await setupNuxt(require('./fixture/configs/factory_rss'))
+    let html = await get('/feed.xml')
+    expect(html).toMatchSnapshot()
+  }, timeout)
+
   test('function rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/function_rss'))
     let html = await get('/feed.xml')

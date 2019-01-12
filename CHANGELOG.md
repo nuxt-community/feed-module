@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/nuxt-community/feed-module/compare/v1.0.0...v1.1.0) (2019-01-12)
+
+
+### Features
+
+* factory object ([#30](https://github.com/nuxt-community/feed-module/issues/30)) ([0a62219](https://github.com/nuxt-community/feed-module/commit/0a62219))
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/nuxt-community/feed-module/compare/v0.2.0...v1.0.0) (2019-01-12)
 

@@ -17,6 +17,7 @@
 - As many feeds as you like!
 - Completely customizable. Need to fetch data before? No problem!
 - Works with **all modes** (yes, even generate!)
+- For Nuxt 2.x and higher
 
 ## Setup
 

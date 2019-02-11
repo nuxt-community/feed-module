@@ -21,12 +21,12 @@
 
 ## Setup
 
-1. Add `@nuxtjs/feed` dependency using yarn or npm to your project
-2. Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`
+1. Add `@nuxtjs/feed` dependency with `yarn` or `npm` into your project
+2. Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`:
 3. Configure it:
 
 ```js
-export default {
+{
   modules: [
     // Simple usage
     ['@nuxtjs/feed', {
@@ -39,7 +39,7 @@ export default {
 using top level options
 
 ```js
-export default {
+{
   modules: [
     // Simple usage
     '@nuxtjs/feed',
@@ -57,7 +57,7 @@ So.. how to get these feeds working now?
 ### Configuration object overview
 
 ```js
-export default {
+{
  //...
  feed: [
    // A default feed configuration object

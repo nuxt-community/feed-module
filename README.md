@@ -1,30 +1,45 @@
 # Feed module - Everyone deserves RSS, Atom and Json
-[![npm (scoped with tag)](https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/feed)
-[![npm](https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square)](https://npmjs.com/package/@nuxtjs/feed)
-[![Build Status](https://travis-ci.org/nuxt-community/feed-module.svg?branch=master)](https://travis-ci.org/nuxt-community/feed-module)
-[![codecov](https://codecov.io/gh/nuxt-community/feed-module/branch/master/graph/badge.svg)](https://codecov.io/gh/nuxt-community/feed-module)
-[![Dependencies](https://david-dm.org/nuxt-community/feed-module/status.svg?style=flat-square)](https://david-dm.org/nuxt-community/feed-module)
-[![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square)](http://standardjs.com)
 
-> 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Codecov][codecov-src]][codecov-href]
+[![Dependencies][david-dm-src]][david-dm-href]
+[![Standard JS][standard-js-src]][standard-js-href]
+
+> Feed module enables everyone to have RSS, Atom and Json.
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
 ## Features
 
-* Three different feed types (RSS 2.0, ATOM 1.0 and JSON 1.0)
-* As many feeds as you like!
-* Completely customizable. Need to fetch data before? No problem!
-* Works with **all modes** (yes, even generate!)
-* For Nuxt 2.x and higher
+- Three different feed types (RSS 2.0, ATOM 1.0 and JSON 1.0)
+- As many feeds as you like!
+- Completely customizable. Need to fetch data before? No problem!
+- Works with **all modes** (yes, even generate!)
+- For Nuxt 2.x and higher
 
 ## Setup
 
-- Add `@nuxtjs/feed` dependency using yarn or npm to your project
-- Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`
+1. Add `@nuxtjs/feed` dependency with `yarn` or `npm` into your project
+2. Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`:
+3. Configure it:
 
 ```js
-export default {
+{
+  modules: [
+    // Simple usage
+    ['@nuxtjs/feed', {
+      // Your feeds here
+    }]
+ ]
+}
+```
+
+using top level options
+
+```js
+{
   modules: [
     // Simple usage
     '@nuxtjs/feed',
@@ -35,8 +50,6 @@ export default {
 }
 ```
 
-- Configure it as you need
-
 ## Configuration
 
 So.. how to get these feeds working now?
@@ -44,7 +57,7 @@ So.. how to get these feeds working now?
 ### Configuration object overview
 
 ```js
-export default {
+{
  //...
  feed: [
    // A default feed configuration object
@@ -120,10 +133,10 @@ feeds you want to generate.
  feed: async () => {
      const posts = (await axios.get('https://blog-api.lichter.io/posts')).data
      const tags = (await axios.get('https://blog-api.lichter.io/tags')).data
-     
+
      return tags.map(t => {
        const relevantPosts = posts.filter(/*filter posts somehow*/)
- 
+
        return {
          path: `/${t.slug}.xml`, // The route to your feed.
          async create (feed) {
@@ -132,7 +145,7 @@ feeds you want to generate.
              link: `https://blog.lichter.io/${t.slug}.xml`,
              description: `All posts related to ${t.name} of my blog`,
            }
- 
+
            relevantPosts.forEach(post => {
              feed.addItem({
                title: post.title,
@@ -162,15 +175,22 @@ In case you want to pass in data into the factory function, you can use a *facto
 }
 ```
 
-
-## Development
-
-- Clone this repository
-- Install dependencies using `yarn install` or `npm install`
-- Start development server using `npm run dev`
-
 ## License
 
 [MIT License](./LICENSE)
 
 Copyright (c) Alexander Lichter
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square
+[npm-version-href]: https://npmjs.com/package/@nuxtjs/feed
+[npm-downloads-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square
+[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/feed
+[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/feed-module.svg?style=flat-square
+[circle-ci-href]: https://circleci.com/gh/nuxt-community/feed-module
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/feed-module.svg?style=flat-square
+[codecov-href]: https://codecov.io/gh/nuxt-community/feed-module
+[david-dm-src]: https://david-dm.org/nuxt-community/feed-module/status.svg?style=flat-square
+[david-dm-href]: https://david-dm.org/nuxt-community/feed-module
+[standard-js-src]: https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square
+[standard-js-href]: https://standardjs.com

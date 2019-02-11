@@ -7,10 +7,12 @@ module.exports = {
   render: {
     resourceHints: false
   },
-  modules: ['@@'],
+  modules: [
+    { handler: require('../../../') }
+  ],
   feed: [
     {
-      create (feed) {
+      create(feed) {
         feed.options = {
           title: 'Популярные новости России и мира',
           link: 'http://site.ru/feed.xml',

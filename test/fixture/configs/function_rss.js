@@ -7,9 +7,11 @@ module.exports = {
   render: {
     resourceHints: false
   },
-  modules: ['@@'],
+  modules: [
+    { handler: require('../../../') }
+  ],
   feed: () => ({
-    create (feed) {
+    create(feed) {
       feed.options = {
         title: 'Feed Title',
         description: 'This is my personal feed!',

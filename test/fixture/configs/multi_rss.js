@@ -7,11 +7,13 @@ module.exports = {
   render: {
     resourceHints: false
   },
-  modules: ['@@'],
+  modules: [
+    { handler: require('../../../') }
+  ],
   feed: [
     {
       path: '/feed.xml',
-      create (feed) {
+      create(feed) {
         feed.options = {
           title: 'Feed 0',
           description: 'This is my personal feed!',
@@ -37,7 +39,7 @@ module.exports = {
     },
     {
       path: '/feed1.xml',
-      create (feed) {
+      create(feed) {
         feed.options = {
           title: 'Feed 1',
           description: 'This is my personal feed!',

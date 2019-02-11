@@ -1,10 +1,11 @@
-const { Nuxt, Builder, Generator } = require('nuxt')
+jest.setTimeout(60000)
+process.env.PORT = process.env.PORT || 5060
+
 const path = require('path')
 const fs = require('fs-extra')
-const oldFs = require('fs')
-const timeout = 60 * 1000
+const { Nuxt, Builder, Generator } = require('nuxt-edge')
 
-describe('generator', async () => {
+describe('generator', () => {
   test('simple rss generator', async () => {
     const nuxt = new Nuxt(require('./fixture/configs/simple_rss'))
     const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
@@ -19,13 +20,13 @@ describe('generator', async () => {
     fs.removeSync(filePath)
     expect(Array.isArray(errors)).toBe(true)
     expect(errors.length).toBe(0)
-  }, timeout)
+  })
 })
 
 describe('universal', () => {
   const request = require('request-promise-native')
 
-  const url = path => `http://localhost:3000${path}`
+  const url = path => `http://localhost:${process.env.PORT}${path}`
   const get = path => request(url(path))
   let nuxt
 
@@ -34,7 +35,7 @@ describe('universal', () => {
   }
   afterEach(async () => {
     const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
-    if (oldFs.existsSync(filePath)) {
+    if (fs.existsSync(filePath)) {
       fs.removeSync(filePath)
     }
 
@@ -43,48 +44,48 @@ describe('universal', () => {
 
   test('simple rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_rss'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
   test('simple atom', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_atom'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
   test('simple json', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/simple_json'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('non-latin rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/non_latin_rss'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('no type set', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/no_type'))
     expect(await get('/feed.xml')).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('object rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/object_rss'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('factory rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/factory_rss'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('function rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/function_rss'))
-    let html = await get('/feed.xml')
+    const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
-  }, timeout)
+  })
 
   test('multi rss', async () => {
     nuxt = await setupNuxt(require('./fixture/configs/multi_rss'))
@@ -93,13 +94,13 @@ describe('universal', () => {
       const html = await get(path)
       expect(html).toMatchSnapshot()
     })
-  }, timeout)
+  })
 })
 
-const setupNuxt = async config => {
+const setupNuxt = async (config) => {
   const nuxt = new Nuxt(config)
   await new Builder(nuxt).build()
-  await nuxt.listen(3000)
+  await nuxt.listen(process.env.PORT)
 
   return nuxt
 }

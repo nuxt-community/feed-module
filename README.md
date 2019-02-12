@@ -36,7 +36,7 @@
 }
 ```
 
-using top level options
+### Using top level options
 
 ```js
 {

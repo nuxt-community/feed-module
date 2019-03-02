@@ -2395,6 +2395,11 @@ consola@^2.0.0-1, consola@^2.3.0, consola@^2.4.0:
     std-env "^2.2.1"
     string-width "^3.0.0"
 
+consola@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.5.6.tgz#5ce14dbaf6f5b589c8a258ef80ed97b752fa57d5"
+  integrity sha512-DN0j6ewiNWkT09G3ZoyyzN3pSYrjxWcx49+mHu+oDI5dvW5vzmyuzYsqGS79+yQserH9ymJQbGzeqUejfssr8w==
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -3826,10 +3831,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-feed@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/feed/-/feed-2.0.2.tgz#8b6cc2f4d9187eac6f6fada8322de43c414c17aa"
-  integrity sha512-AskLRGhPuY82HQbRDV3DLG/2f/jicqT6naUgrWm/PsIIsA36ErCr1yRcw2sMMcPcef6MZGylKTq32vaHLT15lw==
+feed@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/feed/-/feed-2.0.4.tgz#14cd71b3bae1e965b81f7e0c5927e8941de996f8"
+  integrity sha512-sWatfulDP6d18qVaWcu34qmq9ml6UeN6nHSBJpNZ2muBqxjPAdT375whPYAHP+gqLfyabtYU5qf2Dv4nqtlp0w==
   dependencies:
     luxon "^1.3.3"
     xml "^1.0.1"

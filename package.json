@@ -30,8 +30,8 @@
   ],
   "dependencies": {
     "async-cache": "^1.1.0",
-    "consola": "^2.4.0",
-    "feed": "^2.0.2",
+    "consola": "^2.5.6",
+    "feed": "^2.0.4",
     "fs-extra": "^7.0.1"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@ const { Nuxt, Builder } = require('nuxt-edge')
 const request = require('request-promise-native')
 const getPort = require('get-port')
 const logger = require('@/logger')
+const { createFeed } = require('./feed-options')
 
 const config = require('./fixture/nuxt.config')
 config.dev = false
@@ -22,7 +23,14 @@ const get = path => request(url(path))
 
 describe('middleware', () => {
   beforeAll(async () => {
-    nuxt = new Nuxt(config)
+    nuxt = new Nuxt({
+      ...config,
+      ...{
+        feed: [
+          { ...createFeed(), ...{ path: '/feed-error.xml' } }
+        ]
+      }
+    })
     await new Builder(nuxt).build()
     port = await getPort()
     await nuxt.listen(port)
@@ -37,7 +45,7 @@ describe('middleware', () => {
   })
 
   test('error on handler', async () => {
-    await expect(get('/feed.xml')).rejects.toMatchObject({
+    await expect(get('/feed-error.xml')).rejects.toMatchObject({
       statusCode: 500
     })
   })

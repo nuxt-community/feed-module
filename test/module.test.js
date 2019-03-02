@@ -1,7 +1,7 @@
 jest.setTimeout(60000)
 
-const { readFileSync } = require('fs')
 const { resolve, join } = require('path')
+const { existsSync, removeSync, readFileSync } = require('fs-extra')
 const { Nuxt, Builder, Generator } = require('nuxt-edge')
 const request = require('request-promise-native')
 const getPort = require('get-port')
@@ -33,6 +33,11 @@ describe('module', () => {
   })
 
   afterEach(async () => {
+    const filePath = resolve(nuxt.options.srcDir, join(nuxt.options.dir.static, 'feed.xml'))
+    if (existsSync(filePath)) {
+      removeSync(filePath)
+    }
+
     if (nuxt) {
       await nuxt.close()
     }
@@ -45,7 +50,7 @@ describe('module', () => {
     const generator = new Generator(nuxt, builder)
     await generator.generate()
 
-    const filePath = resolve(nuxt.options.rootDir, join(nuxt.options.generate.dir, 'feed.xml'))
+    const filePath = resolve(nuxt.options.srcDir, join(nuxt.options.dir.static, 'feed.xml'))
     expect(readFileSync(filePath, { encoding: 'utf8' })).toMatchSnapshot()
   })
 

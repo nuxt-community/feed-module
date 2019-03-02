@@ -1,106 +1,224 @@
 jest.setTimeout(60000)
-process.env.PORT = process.env.PORT || 5060
 
-const path = require('path')
-const fs = require('fs-extra')
+const { readFileSync } = require('fs')
+const { resolve, join } = require('path')
 const { Nuxt, Builder, Generator } = require('nuxt-edge')
+const request = require('request-promise-native')
+const getPort = require('get-port')
+const logger = require('@/logger')
+const { createFeed, feedOptions } = require('./feed-options')
 
-describe('generator', () => {
-  test('simple rss generator', async () => {
-    const nuxt = new Nuxt(require('./fixture/configs/simple_rss'))
-    const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
-    fs.removeSync(filePath)
+const config = require('./fixture/nuxt.config')
+config.dev = false
 
-    const generator = new Generator(nuxt, new Builder(nuxt))
-    await generator.initiate()
-    await generator.initRoutes()
+let nuxt, port
 
-    expect(fs.readFileSync(filePath, { encoding: 'utf8' })).toMatchSnapshot()
-    const { errors } = await generator.generate()
-    fs.removeSync(filePath)
-    expect(Array.isArray(errors)).toBe(true)
-    expect(errors.length).toBe(0)
+logger.mockTypes(() => jest.fn())
+
+const url = path => `http://localhost:${port}${path}`
+const get = path => request(url(path))
+
+const setupNuxt = async (config) => {
+  const nuxt = new Nuxt(config)
+  await new Builder(nuxt).build()
+  port = await getPort()
+  await nuxt.listen(port)
+
+  return nuxt
+}
+
+describe('module', () => {
+  beforeEach(() => {
+    logger.clear()
   })
-})
 
-describe('universal', () => {
-  const request = require('request-promise-native')
-
-  const url = path => `http://localhost:${process.env.PORT}${path}`
-  const get = path => request(url(path))
-  let nuxt
-
-  const closeNuxt = async () => {
-    await nuxt.close()
-  }
   afterEach(async () => {
-    const filePath = path.resolve(nuxt.options.srcDir, path.join('static', '/feed.xml'))
-    if (fs.existsSync(filePath)) {
-      fs.removeSync(filePath)
+    if (nuxt) {
+      await nuxt.close()
     }
+  })
 
-    await closeNuxt()
+  test('generate simple rss', async () => {
+    nuxt = new Nuxt(config)
+
+    const builder = new Builder(nuxt)
+    const generator = new Generator(nuxt, builder)
+    await generator.generate()
+
+    const filePath = resolve(nuxt.options.rootDir, join(nuxt.options.generate.dir, 'feed.xml'))
+    expect(readFileSync(filePath, { encoding: 'utf8' })).toMatchSnapshot()
   })
 
   test('simple rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/simple_rss'))
+    nuxt = await setupNuxt(config)
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
+
   test('simple atom', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/simple_atom'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          createFeed('atom1')
+        ]
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
+
   test('simple json', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/simple_json'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          createFeed('json1')
+        ]
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
 
   test('non-latin rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/non_latin_rss'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          {
+            create(feed) {
+              feed.options = {
+                title: 'Популярные новости России и мира',
+                link: 'http://site.ru/feed.xml',
+                description: 'Новости России и мира на сайте site.ru',
+                updated: new Date(Date.UTC(2000, 6, 14))
+              }
+              feed.addContributor({
+                name: 'Команда проекта site.ru',
+                email: 'support@ site.ru',
+                link: 'http://site.ru/'
+              })
+            },
+            type: 'rss2'
+          }
+        ]
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
 
-  test('no type set', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/no_type'))
-    expect(await get('/feed.xml')).toMatchSnapshot()
-  })
-
   test('object rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/object_rss'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: {
+          data: { title: 'Feed Title' },
+          create(feed, data) {
+            feedOptions.title = data.title
+            feed.options = feedOptions
+          },
+          type: 'rss2'
+        }
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
 
   test('factory rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/factory_rss'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: {
+          data: { title: 'Feed Title' },
+          factory: data => ({
+            data,
+            create(feed, { title }) {
+              feedOptions.title = data.title
+              feed.options = feedOptions
+            },
+            type: 'rss2'
+          })
+        }
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
 
   test('function rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/function_rss'))
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: () => createFeed()
+      }
+    })
+
     const html = await get('/feed.xml')
     expect(html).toMatchSnapshot()
   })
 
   test('multi rss', async () => {
-    nuxt = await setupNuxt(require('./fixture/configs/multi_rss'))
-
-    await ['/feed.xml', '/feed1.xml'].forEach(async (path, i) => {
-      const html = await get(path)
-      expect(html).toMatchSnapshot()
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          { ...createFeed(), ...{ path: '/feed1.xml' } },
+          { ...createFeed(), ...{ path: '/feed2.xml' } }
+        ]
+      }
     })
+
+    const html1 = await get('/feed1.xml')
+    expect(html1).toMatchSnapshot()
+
+    const html2 = await get('/feed2.xml')
+    expect(html2).toMatchSnapshot()
+  })
+
+  test('no type set', async () => {
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          {}
+        ]
+      }
+    })
+
+    const html = await get('/feed.xml')
+    expect(html).toMatchSnapshot()
+
+    expect(logger.fatal).toHaveBeenCalledWith('Could not create Feed /feed.xml - Unknown feed type')
+  })
+
+  test('error on create feed', async () => {
+    nuxt = await setupNuxt({
+      ...config,
+      ...{
+        feed: [
+          {
+            create(feed) {
+              throw new Error('Error on create feed')
+            },
+            type: 'rss2'
+          }
+        ]
+      }
+    })
+
+    const html = await get('/feed.xml')
+    expect(html).toMatchSnapshot()
+
+    expect(logger.error).toHaveBeenCalledWith(new Error('Error on create feed'))
+    expect(logger.fatal).toHaveBeenCalledWith('Error while executing feed creation function')
   })
 })
-
-const setupNuxt = async (config) => {
-  const nuxt = new Nuxt(config)
-  await new Builder(nuxt).build()
-  await nuxt.listen(process.env.PORT)
-
-  return nuxt
-}

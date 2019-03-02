@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generator simple rss generator 1`] = `
+exports[`module error on create feed 1`] = `""`;
+
+exports[`module factory rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
@@ -21,7 +23,7 @@ exports[`generator simple rss generator 1`] = `
 </rss>"
 `;
 
-exports[`universal factory rss 1`] = `
+exports[`module function rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
@@ -42,7 +44,7 @@ exports[`universal factory rss 1`] = `
 </rss>"
 `;
 
-exports[`universal function rss 1`] = `
+exports[`module generate simple rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
@@ -63,9 +65,51 @@ exports[`universal function rss 1`] = `
 </rss>"
 `;
 
-exports[`universal no type set 1`] = `""`;
+exports[`module multi rss 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
+    </channel>
+</rss>"
+`;
 
-exports[`universal non-latin rss 1`] = `
+exports[`module multi rss 2`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
+    </channel>
+</rss>"
+`;
+
+exports[`module no type set 1`] = `""`;
+
+exports[`module non-latin rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\">
     <channel>
@@ -79,7 +123,7 @@ exports[`universal non-latin rss 1`] = `
 </rss>"
 `;
 
-exports[`universal object rss 1`] = `
+exports[`module object rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>
@@ -100,7 +144,7 @@ exports[`universal object rss 1`] = `
 </rss>"
 `;
 
-exports[`universal simple atom 1`] = `
+exports[`module simple atom 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <feed xmlns=\\"http://www.w3.org/2005/Atom\\">
     <id>http://example.com/</id>
@@ -121,7 +165,7 @@ exports[`universal simple atom 1`] = `
 </feed>"
 `;
 
-exports[`universal simple json 1`] = `
+exports[`module simple json 1`] = `
 "{
     \\"version\\": \\"https://jsonfeed.org/version/1\\",
     \\"title\\": \\"Feed Title\\",
@@ -137,7 +181,7 @@ exports[`universal simple json 1`] = `
 }"
 `;
 
-exports[`universal simple rss 1`] = `
+exports[`module simple rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
     <channel>

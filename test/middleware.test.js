@@ -25,11 +25,9 @@ describe('middleware', () => {
   beforeAll(async () => {
     nuxt = new Nuxt({
       ...config,
-      ...{
-        feed: [
-          { ...createFeed(), ...{ path: '/feed-error.xml' } }
-        ]
-      }
+      feed: [
+        { ...createFeed(), ...{ path: '/feed-error.xml' } }
+      ]
     })
     await new Builder(nuxt).build()
     port = await getPort()

@@ -64,11 +64,9 @@ describe('module', () => {
   test('simple atom', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          createFeed('atom1')
-        ]
-      }
+      feed: [
+        createFeed('atom1')
+      ]
     })
 
     const html = await get('/feed.xml')
@@ -78,11 +76,9 @@ describe('module', () => {
   test('simple json', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          createFeed('json1')
-        ]
-      }
+      feed: [
+        createFeed('json1')
+      ]
     })
 
     const html = await get('/feed.xml')
@@ -92,26 +88,24 @@ describe('module', () => {
   test('non-latin rss', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          {
-            create(feed) {
-              feed.options = {
-                title: 'Популярные новости России и мира',
-                link: 'http://site.ru/feed.xml',
-                description: 'Новости России и мира на сайте site.ru',
-                updated: new Date(Date.UTC(2000, 6, 14))
-              }
-              feed.addContributor({
-                name: 'Команда проекта site.ru',
-                email: 'support@ site.ru',
-                link: 'http://site.ru/'
-              })
-            },
-            type: 'rss2'
-          }
-        ]
-      }
+      feed: [
+        {
+          create(feed) {
+            feed.options = {
+              title: 'Популярные новости России и мира',
+              link: 'http://site.ru/feed.xml',
+              description: 'Новости России и мира на сайте site.ru',
+              updated: new Date(Date.UTC(2000, 6, 14))
+            }
+            feed.addContributor({
+              name: 'Команда проекта site.ru',
+              email: 'support@ site.ru',
+              link: 'http://site.ru/'
+            })
+          },
+          type: 'rss2'
+        }
+      ]
     })
 
     const html = await get('/feed.xml')
@@ -121,15 +115,13 @@ describe('module', () => {
   test('object rss', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: {
-          data: { title: 'Feed Title' },
-          create(feed, data) {
-            feedOptions.title = data.title
-            feed.options = feedOptions
-          },
-          type: 'rss2'
-        }
+      feed: {
+        data: { title: 'Feed Title' },
+        create(feed, data) {
+          feedOptions.title = data.title
+          feed.options = feedOptions
+        },
+        type: 'rss2'
       }
     })
 
@@ -140,18 +132,16 @@ describe('module', () => {
   test('factory rss', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: {
-          data: { title: 'Feed Title' },
-          factory: data => ({
-            data,
-            create(feed, { title }) {
-              feedOptions.title = data.title
-              feed.options = feedOptions
-            },
-            type: 'rss2'
-          })
-        }
+      feed: {
+        data: { title: 'Feed Title' },
+        factory: data => ({
+          data,
+          create(feed, { title }) {
+            feedOptions.title = data.title
+            feed.options = feedOptions
+          },
+          type: 'rss2'
+        })
       }
     })
 
@@ -162,9 +152,7 @@ describe('module', () => {
   test('function rss', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: () => createFeed()
-      }
+      feed: () => createFeed()
     })
 
     const html = await get('/feed.xml')
@@ -174,12 +162,10 @@ describe('module', () => {
   test('multi rss', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          { ...createFeed(), ...{ path: '/feed1.xml' } },
-          { ...createFeed(), ...{ path: '/feed2.xml' } }
-        ]
-      }
+      feed: [
+        { ...createFeed(), ...{ path: '/feed1.xml' } },
+        { ...createFeed(), ...{ path: '/feed2.xml' } }
+      ]
     })
 
     const html1 = await get('/feed1.xml')
@@ -192,11 +178,9 @@ describe('module', () => {
   test('no type set', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          {}
-        ]
-      }
+      feed: [
+        {}
+      ]
     })
 
     const html = await get('/feed.xml')
@@ -208,16 +192,14 @@ describe('module', () => {
   test('error on create feed', async () => {
     nuxt = await setupNuxt({
       ...config,
-      ...{
-        feed: [
-          {
-            create(feed) {
-              throw new Error('Error on create feed')
-            },
-            type: 'rss2'
-          }
-        ]
-      }
+      feed: [
+        {
+          create(feed) {
+            throw new Error('Error on create feed')
+          },
+          type: 'rss2'
+        }
+      ]
     })
 
     const html = await get('/feed.xml')

@@ -21,18 +21,17 @@
 
 ## Setup
 
-1. Add `@nuxtjs/feed` dependency with `yarn` or `npm` into your project
-2. Add `@nuxtjs/feed` to `modules` section of `nuxt.config.js`:
+1. Add the `@nuxtjs/feed` dependency with `yarn` or `npm` to your project
+2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`:
 3. Configure it:
 
 ```js
 {
   modules: [
-    // Simple usage
     ['@nuxtjs/feed', {
       // Your feeds here
     }]
- ]
+  ]
 }
 ```
 
@@ -41,12 +40,11 @@
 ```js
 {
   modules: [
-    // Simple usage
-    '@nuxtjs/feed',
- ],
- feed: [
-   // Your feeds here
- ]
+    '@nuxtjs/feed'
+  ],
+  feed: [
+    // Your feeds here
+  ]
 }
 ```
 
@@ -58,18 +56,16 @@ So.. how to get these feeds working now?
 
 ```js
 {
- //...
- feed: [
-   // A default feed configuration object
-   {
-     path: '/feed.xml', // The route to your feed.
-     async create (feed) {}, // The create function (see below)
-     cacheTime: 1000 * 60 * 15, // How long should the feed be cached
-     type: 'rss2', // Can be: rss2, atom1, json1
-     data: ['Some additional data'] //will be passed as 2nd argument to `create` function
-   }
- ]
- //...
+  feed: [
+    // A default feed configuration object
+    {
+      path: '/feed.xml', // The route to your feed.
+      async create(feed) {}, // The create function (see below)
+      cacheTime: 1000 * 60 * 15, // How long should the feed be cached
+      type: 'rss2', // Can be: rss2, atom1, json1
+      data: ['Some additional data'] // Will be passed as 2nd argument to `create` function
+    }
+  ]
 }
 ```
 
@@ -81,15 +77,14 @@ actually modifies your upcoming feed.
 A simple create function could look like this:
 
 ```js
-//Import axios into your nuxt.config.js
 import axios from 'axios'
 
 // In your `feed` array:
-async create (feed){
+async create(feed) {
   feed.options = {
     title: 'My blog',
     link: 'https://lichter.io/feed.xml',
-    description: 'This is my personal feed!',
+    description: 'This is my personal feed!'
   }
 
   const posts = await (axios.get('https://blog-api.lichter.io/posts')).data
@@ -130,37 +125,37 @@ feeds you want to generate.
 
 ```js
 {
- feed: async () => {
-     const posts = (await axios.get('https://blog-api.lichter.io/posts')).data
-     const tags = (await axios.get('https://blog-api.lichter.io/tags')).data
+  feed: async () => {
+    const posts = (await axios.get('https://blog-api.lichter.io/posts')).data
+    const tags = (await axios.get('https://blog-api.lichter.io/tags')).data
 
-     return tags.map(t => {
-       const relevantPosts = posts.filter(/*filter posts somehow*/)
+    return tags.map(t => {
+      const relevantPosts = posts.filter(/*filter posts somehow*/)
 
-       return {
-         path: `/${t.slug}.xml`, // The route to your feed.
-         async create (feed) {
-           feed.options = {
-             title: `${t.name} - My blog`,
-             link: `https://blog.lichter.io/${t.slug}.xml`,
-             description: `All posts related to ${t.name} of my blog`,
-           }
+      return {
+        path: `/${t.slug}.xml`, // The route to your feed.
+        async create(feed) {
+          feed.options = {
+            title: `${t.name} - My blog`,
+            link: `https://blog.lichter.io/${t.slug}.xml`,
+            description: `All posts related to ${t.name} of my blog`
+          }
 
-           relevantPosts.forEach(post => {
-             feed.addItem({
-               title: post.title,
-               id: post.id,
-               link: `https://blog.lichter.io/posts/${post.slug}`,
-               description: post.excerpt,
-               content: post.text
-             })
-           })
-         },
-         cacheTime: 1000 * 60 * 15,
-         type: 'rss2'
-       }
-     })
-   }
+          relevantPosts.forEach(post => {
+            feed.addItem({
+              title: post.title,
+              id: post.id,
+              link: `https://blog.lichter.io/posts/${post.slug}`,
+              description: post.excerpt,
+              content: post.text
+            })
+          })
+        },
+        cacheTime: 1000 * 60 * 15,
+        type: 'rss2'
+      }
+    })
+  }
 }
 ```
 
@@ -174,6 +169,12 @@ In case you want to pass in data into the factory function, you can use a *facto
   }
 }
 ```
+
+## Development
+
+1. Clone this repository
+2. Install dependencies using `yarn install` or `npm install`
+3. Start development server using `npm run dev`
 
 ## License
 

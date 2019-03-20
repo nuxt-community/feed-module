@@ -47,7 +47,7 @@ describe('module', () => {
   test('generate simple rss', async () => {
     nuxt = new Nuxt(config)
     await nuxt.ready()
-    
+
     const builder = new Builder(nuxt)
     const generator = new Generator(nuxt, builder)
     await generator.generate()

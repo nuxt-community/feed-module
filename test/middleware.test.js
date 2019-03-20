@@ -29,6 +29,7 @@ describe('middleware', () => {
         { ...createFeed(), ...{ path: '/feed-error.xml' } }
       ]
     })
+    await nuxt.ready()
     await new Builder(nuxt).build()
     port = await getPort()
     await nuxt.listen(port)

@@ -32,7 +32,7 @@
   "dependencies": {
     "async-cache": "^1.1.0",
     "consola": "^2.6.1",
-    "feed": "^2.0.4",
+    "feed": "^3.0.0",
     "fs-extra": "^8.0.0"
   },
   "devDependencies": {

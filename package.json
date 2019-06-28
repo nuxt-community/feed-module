@@ -31,9 +31,9 @@
   ],
   "dependencies": {
     "async-cache": "^1.1.0",
-    "consola": "^2.6.1",
+    "consola": "^2.9.0",
     "feed": "^3.0.0",
-    "fs-extra": "^8.0.0"
+    "fs-extra": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "latest",

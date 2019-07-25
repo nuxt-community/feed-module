@@ -1,5 +1,5 @@
 const createFeed = (type = 'rss2') => ({
-  create(feed) {
+  create (feed) {
     feed.options = feedOptions
   },
   type

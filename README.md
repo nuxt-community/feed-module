@@ -4,8 +4,7 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
 [![Codecov][codecov-src]][codecov-href]
-[![Dependencies][david-dm-src]][david-dm-href]
-[![Standard JS][standard-js-src]][standard-js-href]
+[![License][license-src]][license-href]
 
 > Feed module enables everyone to have RSS, Atom and Json.
 
@@ -21,9 +20,13 @@
 
 ## Setup
 
-1. Add the `@nuxtjs/feed` dependency with `yarn` or `npm` to your project
-2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`:
-3. Configure it:
+1. Add `@nuxtjs/feed` dependency to your project
+
+```bash
+yarn add @nuxtjs/feed # or npm install @nuxtjs/feed
+```
+
+2. Add `@nuxtjs/robots` to the `modules` section of `nuxt.config.js`
 
 ```js
 {
@@ -71,7 +74,7 @@ So.. how to get these feeds working now?
 
 ### Feed create function
 
-Let's take a closer look on the `create` function. This is the API that 
+Let's take a closer look on the `create` function. This is the API that
 actually modifies your upcoming feed.
 
 A simple create function could look like this:
@@ -180,18 +183,20 @@ In case you want to pass in data into the factory function, you can use a *facto
 
 [MIT License](./LICENSE)
 
-Copyright (c) Alexander Lichter
+Copyright (c) - Nuxt Community
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square
+[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/feed
-[npm-downloads-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/feed
+
 [circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/feed-module.svg?style=flat-square
 [circle-ci-href]: https://circleci.com/gh/nuxt-community/feed-module
+
 [codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/feed-module.svg?style=flat-square
 [codecov-href]: https://codecov.io/gh/nuxt-community/feed-module
-[david-dm-src]: https://david-dm.org/nuxt-community/feed-module/status.svg?style=flat-square
-[david-dm-href]: https://david-dm.org/nuxt-community/feed-module
-[standard-js-src]: https://img.shields.io/badge/code_style-standard-brightgreen.svg?style=flat-square
-[standard-js-href]: https://standardjs.com
+
+[license-src]: https://img.shields.io/npm/l/@nuxtjs/feed.svg?style=flat-square
+[license-href]: https://npmjs.com/package/@nuxtjs/feed

@@ -8,7 +8,7 @@ jest.mock('async-cache', () => {
 const { Nuxt, Builder } = require('nuxt-edge')
 const request = require('request-promise-native')
 const getPort = require('get-port')
-const logger = require('@/logger')
+const logger = require('../lib/logger')
 const { createFeed } = require('./feed-options')
 
 const config = require('./fixture/nuxt.config')
@@ -29,6 +29,7 @@ describe('middleware', () => {
         { ...createFeed(), ...{ path: '/feed-error.xml' } }
       ]
     })
+    await nuxt.ready()
     await new Builder(nuxt).build()
     port = await getPort()
     await nuxt.listen(port)

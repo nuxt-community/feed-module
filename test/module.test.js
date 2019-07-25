@@ -5,7 +5,7 @@ const { readFileSync } = require('fs')
 const { Nuxt, Builder, Generator } = require('nuxt-edge')
 const request = require('request-promise-native')
 const getPort = require('get-port')
-const logger = require('@/logger')
+const logger = require('../lib/logger')
 const { createFeed, feedOptions } = require('./feed-options')
 
 const config = require('./fixture/nuxt.config')
@@ -20,6 +20,7 @@ const get = path => request(url(path))
 
 const setupNuxt = async (config) => {
   const nuxt = new Nuxt(config)
+  await nuxt.ready()
   await new Builder(nuxt).build()
   port = await getPort()
   await nuxt.listen(port)
@@ -40,6 +41,7 @@ describe('module', () => {
 
   test('generate simple rss', async () => {
     nuxt = new Nuxt(config)
+    await nuxt.ready()
 
     const builder = new Builder(nuxt)
     const generator = new Generator(nuxt, builder)
@@ -85,7 +87,7 @@ describe('module', () => {
       ...config,
       feed: [
         {
-          create(feed) {
+          create (feed) {
             feed.options = {
               title: 'Популярные новости России и мира',
               link: 'http://site.ru/feed.xml',
@@ -112,7 +114,7 @@ describe('module', () => {
       ...config,
       feed: {
         data: { title: 'Feed Title' },
-        create(feed, data) {
+        create (feed, data) {
           feedOptions.title = data.title
           feed.options = feedOptions
         },
@@ -131,7 +133,7 @@ describe('module', () => {
         data: { title: 'Feed Title' },
         factory: data => ({
           data,
-          create(feed, { title }) {
+          create (feed, { title }) {
             feedOptions.title = data.title
             feed.options = feedOptions
           },
@@ -189,7 +191,7 @@ describe('module', () => {
       ...config,
       feed: [
         {
-          create(feed) {
+          create (feed) {
             throw new Error('Error on create feed')
           },
           type: 'rss2'

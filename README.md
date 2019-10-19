@@ -26,7 +26,7 @@
 yarn add @nuxtjs/feed # or npm install @nuxtjs/feed
 ```
 
-2. Add `@nuxtjs/robots` to the `modules` section of `nuxt.config.js`
+2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`
 
 ```js
 {

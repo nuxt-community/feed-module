@@ -31,8 +31,8 @@
   ],
   "dependencies": {
     "async-cache": "^1.1.0",
-    "consola": "^2.9.0",
-    "feed": "^4.0.0"
+    "consola": "^2.11.3",
+    "feed": "^4.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "latest",

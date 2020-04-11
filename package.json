@@ -22,6 +22,7 @@
   },
   "scripts": {
     "dev": "nuxt test/fixture",
+    "generate": "nuxt generate test/fixture",
     "lint": "eslint --ext .js,.vue lib test",
     "test": "yarn lint && jest",
     "release": "yarn test && standard-version && git push --follow-tags && npm publish"

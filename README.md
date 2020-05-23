@@ -53,7 +53,7 @@ yarn add @nuxtjs/feed # or npm install @nuxtjs/feed
 
 ## Configuration
 
-So.. how to get these feeds working now?
+So... how to get these feeds working now?
 
 ### Configuration object overview
 

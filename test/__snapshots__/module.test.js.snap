@@ -10,7 +10,7 @@ exports[`module factory rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -31,7 +31,7 @@ exports[`module function rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -52,7 +52,7 @@ exports[`module generate simple rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -73,7 +73,7 @@ exports[`module multi rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -94,7 +94,7 @@ exports[`module multi rss 2`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -117,7 +117,7 @@ exports[`module non-latin rss 1`] = `
         <link>http://site.ru/feed.xml</link>
         <description>Новости России и мира на сайте site.ru</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
     </channel>
 </rss>"
@@ -131,7 +131,7 @@ exports[`module object rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>
@@ -189,7 +189,7 @@ exports[`module simple rss 1`] = `
         <link>http://example.com/</link>
         <description>This is my personal feed!</description>
         <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>awesome</generator>
         <image>
             <title>Feed Title</title>

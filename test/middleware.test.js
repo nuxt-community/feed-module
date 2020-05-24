@@ -1,39 +1,27 @@
-jest.setTimeout(60000)
 jest.mock('async-cache', () => {
   return jest.fn().mockImplementation(() => {
     return { get: () => { throw new Error('Error on create feed') } }
   })
 })
 
-const { Nuxt, Builder } = require('nuxt-edge')
-const request = require('request-promise-native')
-const getPort = require('get-port')
+const { setup, loadConfig, get } = require('@nuxtjs/module-test-utils')
 const logger = require('../lib/logger')
 const { createFeed } = require('./feed-options')
 
-const config = require('./fixture/nuxt.config')
-config.dev = false
-
-let nuxt, port
-
 logger.mockTypes(() => jest.fn())
 
-const url = path => `http://localhost:${port}${path}`
-const get = path => request(url(path))
-
 describe('middleware', () => {
+  let nuxt
+
   beforeAll(async () => {
-    nuxt = new Nuxt({
-      ...config,
+    ({ nuxt } = await setup({
+      ...loadConfig(__dirname),
+      dev: false,
       feed: [
         { ...createFeed(), ...{ path: '/feed-error.xml' } }
       ]
-    })
-    await nuxt.ready()
-    await new Builder(nuxt).build()
-    port = await getPort()
-    await nuxt.listen(port)
-  })
+    }))
+  }, 60000)
 
   beforeEach(() => {
     logger.clear()

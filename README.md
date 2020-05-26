@@ -2,7 +2,7 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![Circle CI][circle-ci-src]][circle-ci-href]
+[![Github Actions CI][github-actions-ci-src]][github-actions-ci-href] 
 [![Codecov][codecov-src]][codecov-href]
 [![License][license-src]][license-href]
 
@@ -29,7 +29,7 @@ yarn add @nuxtjs/feed # or npm install @nuxtjs/feed
 2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`
 
 ```js
-{
+export default {
   modules: [
     ['@nuxtjs/feed', {
       // Your feeds here
@@ -41,7 +41,7 @@ yarn add @nuxtjs/feed # or npm install @nuxtjs/feed
 ### Using top level options
 
 ```js
-{
+export default {
   modules: [
     '@nuxtjs/feed'
   ],
@@ -58,7 +58,7 @@ So... how to get these feeds working now?
 ### Configuration object overview
 
 ```js
-{
+export default {
   feed: [
     // A default feed configuration object
     {
@@ -82,8 +82,8 @@ A simple create function could look like this:
 ```js
 import axios from 'axios'
 
-// In your `feed` array:
-async create(feed) {
+// In your `feed` array's object:
+async create (feed) {
   feed.options = {
     title: 'My blog',
     link: 'https://lichter.io/feed.xml',
@@ -127,7 +127,7 @@ a function that will be called up on feed generation. The function **must** retu
 feeds you want to generate.
 
 ```js
-{
+export default {
   feed: async () => {
     const posts = (await axios.get('https://blog-api.lichter.io/posts')).data
     const tags = (await axios.get('https://blog-api.lichter.io/tags')).data
@@ -165,9 +165,9 @@ feeds you want to generate.
 In case you want to pass in data into the factory function, you can use a *factory object*.
 
 ```js
-{
+export default {
   feed: {
-    data: ['Your data here']
+    data: ['Your data here'],
     factory: (dataFromFeedDotData) => {/* your factory function */}
   }
 }
@@ -186,17 +186,17 @@ In case you want to pass in data into the factory function, you can use a *facto
 Copyright (c) - Nuxt Community
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat-square
+[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/feed
 
-[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg?style=flat-square
+[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/feed
 
-[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/feed-module.svg?style=flat-square
-[circle-ci-href]: https://circleci.com/gh/nuxt-community/feed-module
+[github-actions-ci-src]: https://github.com/nuxt-community/feed-module/workflows/ci/badge.svg
+[github-actions-ci-href]: https://github.com/nuxt-community/feed-module/actions?query=workflow%3Aci
 
-[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/feed-module.svg?style=flat-square
+[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/feed-module.svg
 [codecov-href]: https://codecov.io/gh/nuxt-community/feed-module
 
-[license-src]: https://img.shields.io/npm/l/@nuxtjs/feed.svg?style=flat-square
+[license-src]: https://img.shields.io/npm/l/@nuxtjs/feed.svg
 [license-href]: https://npmjs.com/package/@nuxtjs/feed

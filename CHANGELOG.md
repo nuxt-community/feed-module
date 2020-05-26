@@ -1,6 +1,24 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.0.0](https://github.com/nuxt-community/feed-module/compare/v1.1.0...v2.0.0) (2020-05-26)
+
+### Breaking Changes
+
+* **generate:** feed output in generate folder ([#43](https://github.com/nuxt-community/feed-module/issues/43)) ([8832f39](https://github.com/nuxt-community/feed-module/commit/8832f39))
+
+### Features
+
+* generated files log ([#74](https://github.com/nuxt-community/feed-module/issues/74)) ([9aae26c](https://github.com/nuxt-community/feed-module/commit/9aae26c))
+
+### Tests
+
+* 💍 update rss2 snapshots ([#79](https://github.com/nuxt-community/feed-module/issues/79)) ([d320fb0](https://github.com/nuxt-community/feed-module/commit/d320fb0))
+* refactor tests with module-test-utils ([#80](https://github.com/nuxt-community/feed-module/issues/80)) ([e418c34](https://github.com/nuxt-community/feed-module/commit/e418c34))
+* **module:** explicitly call nuxt.ready() ([#46](https://github.com/nuxt-community/feed-module/issues/46)) ([5ddf6d3](https://github.com/nuxt-community/feed-module/commit/5ddf6d3))
+
+
 
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/nuxt-community/feed-module/compare/v1.0.0...v1.1.0) (2019-01-12)

@@ -4,7 +4,7 @@ exports[`module error on create feed 1`] = `""`;
 
 exports[`module factory rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -18,14 +18,13 @@ exports[`module factory rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
 
 exports[`module function rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -39,14 +38,13 @@ exports[`module function rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
 
 exports[`module generate simple rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -60,14 +58,13 @@ exports[`module generate simple rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
 
 exports[`module multi rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -81,14 +78,13 @@ exports[`module multi rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
 
 exports[`module multi rss 2`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -102,7 +98,6 @@ exports[`module multi rss 2`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
@@ -125,7 +120,7 @@ exports[`module non-latin rss 1`] = `
 
 exports[`module object rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -139,7 +134,6 @@ exports[`module object rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;
@@ -183,7 +177,7 @@ exports[`module simple json 1`] = `
 
 exports[`module simple rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
-<rss version=\\"2.0\\" xmlns:atom=\\"http://www.w3.org/2005/Atom\\">
+<rss version=\\"2.0\\">
     <channel>
         <title>Feed Title</title>
         <link>http://example.com/</link>
@@ -197,7 +191,6 @@ exports[`module simple rss 1`] = `
             <link>http://example.com/</link>
         </image>
         <copyright>All rights reserved 2013, John Doe</copyright>
-        <atom:link href=\\"https://example.com/atom\\" rel=\\"self\\" type=\\"application/rss+xml\\"/>
     </channel>
 </rss>"
 `;

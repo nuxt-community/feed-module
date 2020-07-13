@@ -62,6 +62,26 @@ exports[`module generate simple rss 1`] = `
 </rss>"
 `;
 
+exports[`module generate simple rss in subdir 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\">
+    <channel>
+        <title>Feed Title</title>
+        <link>http://example.com/</link>
+        <description>This is my personal feed!</description>
+        <lastBuildDate>Fri, 14 Jul 2000 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>awesome</generator>
+        <image>
+            <title>Feed Title</title>
+            <url>http://example.com/image.png</url>
+            <link>http://example.com/</link>
+        </image>
+        <copyright>All rights reserved 2013, John Doe</copyright>
+    </channel>
+</rss>"
+`;
+
 exports[`module multi rss 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
 <rss version=\\"2.0\\">

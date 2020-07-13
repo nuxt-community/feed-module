@@ -37,6 +37,18 @@ describe('module', () => {
     expect(readFileSync(filePath, { encoding: 'utf8' })).toMatchSnapshot()
   })
 
+  test('generate simple rss in subdir', async () => {
+    ({ nuxt } = await generate({
+      ...config,
+      feed: [
+        { ...createFeed(), ...{ path: join('/feeds/articles', 'feed.xml') } }
+      ]
+    }))
+
+    const filePath = resolve(nuxt.options.rootDir, join(nuxt.options.generate.dir, '/feeds/articles', 'feed.xml'))
+    expect(readFileSync(filePath, { encoding: 'utf8' })).toMatchSnapshot()
+  })
+
   test('simple rss', async () => {
     ({ nuxt } = await setup(config))
 

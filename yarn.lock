@@ -3057,10 +3057,10 @@ connect@^3.6.6, connect@^3.7.0:
     parseurl "~1.3.3"
     utils-merge "1.0.1"
 
-consola@^2.12.1:
-  version "2.12.1"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-2.12.1.tgz#88e9311a02cb88a7f6f9488239dd30b6ba99cbb0"
-  integrity sha512-aEkkju9ZcEa9y2MhzNhfmTUws/CEZZ0LKu0FxftSU3HygPfVMMIMSYyYct+xBN6XNRhsaDZjw2HAv3m2ammXSA==
+consola@^2.15.3:
+  version "2.15.3"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
+  integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
 
 consola@^2.3.0, consola@^2.6.0, consola@^2.9.0:
   version "2.9.0"
@@ -4547,10 +4547,10 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-feed@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/feed/-/feed-4.2.0.tgz#9f6dbc476f6a5925a6e040ef377c7fafbfbc2cf6"
-  integrity sha512-nLU4Fn+5TCJ1Zu9kBDqXPxsaTXaL/hZgZ3pmT87TUzS1kfaL91iIKJ+DFWygL8CrOeYw80z7QWxabkMV/x+g2g==
+feed@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/feed/-/feed-4.2.2.tgz#865783ef6ed12579e2c44bbef3c9113bc4956a7e"
+  integrity sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==
   dependencies:
     xml-js "^1.6.11"
 

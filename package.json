@@ -1,0 +1,42 @@
+{
+  "name": "@nuxt-modules/feed",
+  "version": "0.1.0",
+  "description": "Generate RSS feed for your Nuxt 3 application",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prettier-format": "prettier --config .prettierrc --write \"src/**/*.{vue,ts}\"",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuxt-modules/feed.git"
+  },
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "nuxt-module",
+    "feed",
+    "rss-feed",
+    "json-feed",
+    "atom",
+    "rss",
+    "rss2"
+  ],
+  "author": "Maciej Pędzich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuxt-modules/feed/issues"
+  },
+  "homepage": "https://github.com/nuxt-modules/feed#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.10.1",
+    "@typescript-eslint/parser": "^5.10.1",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nuxt3": "^3.0.0-27386975.6e06d2b",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  }
+}

@@ -2,9 +2,20 @@
   "name": "@nuxt-modules/feed",
   "version": "0.1.0",
   "description": "Generate RSS feed for your Nuxt 3 application",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/module.cjs",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "main": "dist/module.cjs",
+  "module": "dist/module.mjs",
+  "types": "dist/module.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "unbuild",
     "prettier-format": "prettier --config .prettierrc --write \"src/**/*.{vue,ts}\"",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
@@ -30,6 +41,7 @@
   },
   "homepage": "https://github.com/nuxt-modules/feed#readme",
   "devDependencies": {
+    "@types/lru-cache": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "eslint": "^8.7.0",
@@ -37,6 +49,12 @@
     "eslint-plugin-prettier": "^4.0.0",
     "nuxt3": "^3.0.0-27386975.6e06d2b",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "unbuild": "^0.6.9"
+  },
+  "dependencies": {
+    "async-cache-dedupe": "^1.1.0",
+    "feed": "^4.2.2",
+    "lru-cache": "^6.0.0"
   }
 }

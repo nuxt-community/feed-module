@@ -1,0 +1,39 @@
+{
+  "name": "@nuxt-modules/feed",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "play": "nuxi dev playground",
+    "play:build": "nuxi build playground",
+    "prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "prettier-format": "prettier --config .prettierrc --write \"src/**/*.{vue,ts}\"",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
+  },
+  "dependencies": {
+    "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
+    "feed": "^4.2.2"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "latest",
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "axios": "^0.25.0",
+    "eslint": "latest",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nuxt3": "latest",
+    "prettier": "^2.5.1"
+  }
+}

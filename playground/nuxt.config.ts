@@ -9,6 +9,6 @@ import { sources } from './feed/array';
 
 export default defineNuxtConfig({
   srcDir: './',
-  modules: [FeedModule],
+  buildModules: [FeedModule],
   feed: { sources }
 });

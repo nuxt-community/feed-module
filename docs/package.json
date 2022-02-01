@@ -1,0 +1,17 @@
+{
+  "name": "@nuxt-modules/feed-docs",
+  "version": "1.0.0",
+  "description": "Docs for @nuxt-modules/feed",
+  "author": "Maciej Pędzich",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "docus": "^2.1.0",
+    "nuxt": "^2.2.0",
+    "windicss": "^3.4.3"
+  }
+}

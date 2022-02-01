@@ -1,44 +1,36 @@
 import { defineNuxtModule } from '@nuxt/kit';
 
-import { FeedConfigFactory } from './types/FeedConfigFactory';
-import { FeedConfig } from './types/FeedConfig';
+import { FeedConfig, FeedConfigFactory } from './types';
 import { resolveModuleOptions } from './lib/resolveModuleOptions';
 import { generateFeedFile } from './lib/generateFeedFile';
 
 export interface ModuleOptions {
-  feed?: FeedConfigFactory | FeedConfig[];
+  sources: FeedConfigFactory | FeedConfig[];
 }
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {
-    feed?: FeedConfigFactory | FeedConfig[];
+    feed?: ModuleOptions;
   }
   interface NuxtOptions {
-    feed?: FeedConfigFactory | FeedConfig[];
+    feed?: ModuleOptions;
   }
 }
 
-export default defineNuxtModule<FeedConfigFactory | FeedConfig[]>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@nuxt-modules/feed',
     configKey: 'feed'
   },
   setup(moduleOptions, nuxt) {
-    nuxt.hook('build:done', async () => {
-      const feedConfigs = await resolveModuleOptions(moduleOptions);
-      const containsFeedsWithInvalidTypes = feedConfigs.some(
-        (config) => !['rss2', 'atom1', 'json1'].includes(config.type)
-      );
+    nuxt.hook('build:before', async () => {
+      const feedConfigs = await resolveModuleOptions(moduleOptions.sources);
 
-      if (containsFeedsWithInvalidTypes) {
-        throw new TypeError('Some feeds contain invalid types');
-      }
-
-      const callbackWithNuxtAsThis = generateFeedFile.bind(
+      const generateFileWithNuxtBound = generateFeedFile.bind(
         nuxt
       ) as typeof generateFeedFile;
 
-      await Promise.all(feedConfigs.map(callbackWithNuxtAsThis));
+      await Promise.all(feedConfigs.map(generateFileWithNuxtBound));
     });
   }
 });

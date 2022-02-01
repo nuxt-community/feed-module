@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { Feed } from 'feed';
 import { Nuxt } from '@nuxt/schema';
 
-import { FeedConfig } from '../types/FeedConfig';
+import { FeedConfig } from '../types';
 
 export async function generateFeedFile(this: Nuxt, config: FeedConfig) {
   const feed = new Feed({
@@ -22,7 +22,7 @@ export async function generateFeedFile(this: Nuxt, config: FeedConfig) {
   const outputDir = dirname(filePath);
 
   if (!existsSync(outputDir)) {
-    mkdirSync(outputDir);
+    mkdirSync(outputDir, { recursive: true });
   }
 
   writeFileSync(filePath, fileContent);

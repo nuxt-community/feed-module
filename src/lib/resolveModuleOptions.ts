@@ -1,5 +1,4 @@
-import { FeedConfigFactory } from '../types/FeedConfigFactory';
-import { FeedConfig } from '../types/FeedConfig';
+import { FeedConfig, FeedConfigFactory } from '../types';
 
 export async function resolveModuleOptions(
   options: FeedConfigFactory | FeedConfig[]

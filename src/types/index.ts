@@ -6,3 +6,5 @@ export type FeedConfig = {
   type: 'rss2' | 'atom1' | 'json1';
   create(feed: Feed): Promise<unknown> | unknown;
 };
+
+export type FeedConfigFactory = () => Promise<FeedConfig[]> | FeedConfig[];

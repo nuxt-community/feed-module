@@ -22,7 +22,7 @@ $ yarn add @nuxt-modules/feed
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  modules: ['@nuxt-modules/feed'],
+  buildModules: ['@nuxt-modules/feed'],
   feed: {
     sources: [
       {
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
 ```
 ## About `create` function
 
-This method is required in order to populate a [feed](https://github.com/jpmonette/feed) object (passed as the only `create` function argument). Here's an example using [InShorts v2 API](https://github.com/sumitkolhe/inshorts-api-v2):
+This method is required in order to populate the [feed](https://github.com/jpmonette/feed) object passed as the only `create` function argument. Here's an example using [InShorts v2 API](https://github.com/sumitkolhe/inshorts-api-v2):
 
 ```ts
 import axios from 'axios';
@@ -105,9 +105,9 @@ export default defineNuxtConfig({
 });
 ```
 
-## Differences between this and original module
+## Comparison with the original module
 
-- As you've probably noticed, this module accepts an object with a single property called `sources`, containing the actual configuration
+- As you've probably noticed, this module accepts an object with a single property called `sources`, containing feed configuration objects
 - Each source object is required to be specified with a `meta` object, including `id`, `title`, `link`, `description` and `copyright` properties
 
 ## Development
@@ -117,4 +117,4 @@ export default defineNuxtConfig({
 
 ## LICENSE
 
-MIT
+[MIT License](https://github.com/nuxt-modules/feed/blob/master/LICENSE)

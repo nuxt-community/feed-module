@@ -15,6 +15,7 @@ node_modules
 
 # Generated dirs
 dist
+**/playground/public
 
 # Nuxt
 .nuxt

@@ -1,8 +1,11 @@
 {
-  "name": "@nuxt-modules/feed",
-  "version": "0.1.0",
+  "name": "@nuxtjs/feed",
+  "version": "3.0.0",
   "license": "MIT",
   "type": "module",
+  "publishConfig": {
+    "tag": "next"
+  },
   "exports": {
     ".": {
       "import": "./dist/module.mjs",

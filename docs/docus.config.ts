@@ -1,5 +1,5 @@
 export default {
-  title: '@nuxt-modules/feed',
+  title: '@nuxtjs/feed',
   url: 'https://feed-nm.netlify.app',
   theme: {
     colors: {

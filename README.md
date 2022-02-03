@@ -1,17 +1,17 @@
-# @nuxt-modules/feed
+# @nuxtjs/feed
 
 ## NOTE
 
 Due to a certain [Nuxt 3 module-builder bug](https://github.com/nuxt/module-builder/issues/22), this module only works in development mode on Windows.
 
-📰 Generate RSS/JSON feeds for your Nuxt application. Compatible with Nuxt 3; inspired by [@nuxt-community/feed-module](https://github.com/nuxt-community/feed-module)
+📰 Generate RSS/JSON feeds for your Nuxt application
 
 ## Installation
 
 ```sh
-$ npm install --save @nuxt-modules/feed
+$ npm install --save @nuxtjs/feed@next
 # OR
-$ yarn add @nuxt-modules/feed
+$ yarn add @nuxtjs/feed@next
 ```
 
 ## Basic Usage
@@ -22,7 +22,7 @@ $ yarn add @nuxt-modules/feed
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  buildModules: ['@nuxt-modules/feed'],
+  buildModules: ['@nuxtjs/feed'],
   feed: {
     sources: [
       {
@@ -35,7 +35,7 @@ export default defineNuxtConfig({
         },
         type: 'rss2', // OR: 'atom1', 'json1'
         path: '/feed.xml',
-        async create(feed) {
+        create(feed) {
           // More on that function below
         }
       }
@@ -78,7 +78,7 @@ That's where _factory function_ comes into play. It allows one to programmatical
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  modules: ['@nuxt-modules/feed'],
+  modules: ['@nuxtjs/feed'],
   feed: {
     sources() {
       const categories = ['vue', 'vite', 'nuxt', 'vitepress'];
@@ -105,10 +105,12 @@ export default defineNuxtConfig({
 });
 ```
 
-## Comparison with the original module
+## Migration - comparison with the 2.0.0 version
 
-- As you've probably noticed, this module accepts an object with a single property called `sources`, containing feed configuration objects
-- Each source object is required to be specified with a `meta` object, including `id`, `title`, `link`, `description` and `copyright` properties
+This version aimed to maintain as similar of an API as possible (along with bringing Nuxt 3 compatibility to the table, obviously). However, there are two key changes caused by Nuxt 3 being unable to parse anything else than objects as module options, as well as feed package type definitions: 
+
+- This module accepts an object with a single property called `sources`, containing feed configuration objects
+- Each source object is required to be specified with a `meta` object including the following properties: `id`, `title`, `description`, `link`, and `copyright`
 
 ## Development
 
@@ -117,4 +119,4 @@ export default defineNuxtConfig({
 
 ## LICENSE
 
-[MIT License](https://github.com/nuxt-modules/feed/blob/master/LICENSE)
+[MIT License](https://github.com/nuxt-community/feed-module/blob/master/LICENSE)

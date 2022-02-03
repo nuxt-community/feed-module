@@ -1,11 +1,13 @@
 import { defineNuxtModule } from '@nuxt/kit';
 
-import { FeedConfig, FeedConfigFactory } from './types';
+import { FeedSource, FeedSourcesFactory } from './types';
 import { resolveModuleOptions } from './lib/resolveModuleOptions';
 import { generateFeedFile } from './lib/generateFeedFile';
 
+export * from './types';
+
 export interface ModuleOptions {
-  sources: FeedConfigFactory | FeedConfig[];
+  sources: FeedSourcesFactory | FeedSource[];
 }
 
 declare module '@nuxt/schema' {
@@ -19,18 +21,18 @@ declare module '@nuxt/schema' {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@nuxt-modules/feed',
+    name: '@nuxtjs/feed',
     configKey: 'feed'
   },
   setup(moduleOptions, nuxt) {
     nuxt.hook('build:before', async () => {
-      const feedConfigs = await resolveModuleOptions(moduleOptions.sources);
+      const FeedSources = await resolveModuleOptions(moduleOptions.sources);
 
       const generateFileWithNuxtBound = generateFeedFile.bind(
         nuxt
       ) as typeof generateFeedFile;
 
-      await Promise.all(feedConfigs.map(generateFileWithNuxtBound));
+      await Promise.all(FeedSources.map(generateFileWithNuxtBound));
     });
   }
 });

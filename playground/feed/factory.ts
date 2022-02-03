@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import axios from 'axios';
 
-import { FeedConfig, FeedConfigFactory } from '../../src/types';
+import { FeedSource, FeedSourcesFactory } from '../../src/module';
 import { Article } from './article-model';
 
-export const sources: FeedConfigFactory = () => {
+export const sources: FeedSourcesFactory = () => {
   const articleCategories = [
     'national',
     'business',
@@ -20,7 +20,7 @@ export const sources: FeedConfigFactory = () => {
     'fashion'
   ];
 
-  return articleCategories.map<FeedConfig>((category) => {
+  return articleCategories.map<FeedSource>((category) => {
     const apiUrl = `https://inshortsv2.vercel.app/news?type=${category}`;
 
     return {
@@ -37,7 +37,7 @@ export const sources: FeedConfigFactory = () => {
         const { data } = await axios.get<{ articles: Article[] }>(apiUrl);
         const { articles } = data;
 
-        articles.forEach((article) => {
+        for (const article of articles) {
           feed.addItem({
             id: article.created_at.toString(),
             title: article.title,
@@ -45,7 +45,7 @@ export const sources: FeedConfigFactory = () => {
             content: article.description,
             date: new Date(article.created_at)
           });
-        });
+        }
       }
     };
   });

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import { FeedConfig } from '../../src/types';
+import { FeedSource } from '../../src/types';
 import { Article } from './article-model';
 
-export const sources: FeedConfig[] = [
+export const sources: FeedSource[] = [
   {
     meta: {
       id: 'science',
@@ -20,7 +20,7 @@ export const sources: FeedConfig[] = [
       );
       const { articles } = data;
 
-      articles.forEach((article) => {
+      for (const article of articles) {
         feed.addItem({
           id: article.created_at.toString(),
           title: article.title,
@@ -28,7 +28,7 @@ export const sources: FeedConfig[] = [
           content: article.description,
           date: new Date(article.created_at)
         });
-      });
+      }
     }
   }
 ];

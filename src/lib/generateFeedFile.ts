@@ -4,12 +4,12 @@ import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import { Feed } from 'feed';
 import { Nuxt } from '@nuxt/schema';
 
-import { FeedConfig } from '../types';
+import { FeedSource } from '../types';
 
-export async function generateFeedFile(this: Nuxt, config: FeedConfig) {
+export async function generateFeedFile(this: Nuxt, config: FeedSource) {
   const feed = new Feed({
     ...config.meta,
-    generator: 'https://github.com/nuxt-modules/feed'
+    generator: 'https://github.com/nuxt-community/feed-module'
   });
 
   await config.create(feed);

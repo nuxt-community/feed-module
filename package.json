@@ -1,6 +1,6 @@
 {
-  "name": "@nuxtjs/feed",
-  "version": "3.0.0",
+  "name": "@nuxtjs/feed-next",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "publishConfig": {

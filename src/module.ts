@@ -21,7 +21,7 @@ declare module '@nuxt/schema' {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@nuxtjs/feed',
+    name: '@nuxtjs/feed-next',
     configKey: 'feed'
   },
   setup(moduleOptions, nuxt) {

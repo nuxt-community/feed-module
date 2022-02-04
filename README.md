@@ -1,4 +1,4 @@
-# @nuxtjs/feed
+# @nuxtjs/feed-next
 
 ## NOTE
 
@@ -9,9 +9,9 @@ Due to a certain [Nuxt 3 module-builder bug](https://github.com/nuxt/module-buil
 ## Installation
 
 ```sh
-$ npm install --save @nuxtjs/feed@next
+$ npm install --save @nuxtjs/feed-next-next
 # OR
-$ yarn add @nuxtjs/feed@next
+$ yarn add @nuxtjs/feed-next-next
 ```
 
 ## Basic Usage
@@ -22,7 +22,7 @@ $ yarn add @nuxtjs/feed@next
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  buildModules: ['@nuxtjs/feed'],
+  buildModules: ['@nuxtjs/feed-next'],
   feed: {
     sources: [
       {
@@ -78,7 +78,7 @@ That's where _factory function_ comes into play. It allows one to programmatical
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/feed'],
+  modules: ['@nuxtjs/feed-next'],
   feed: {
     sources() {
       const categories = ['vue', 'vite', 'nuxt', 'vitepress'];

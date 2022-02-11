@@ -9,9 +9,9 @@ Due to a certain [Nuxt 3 module-builder bug](https://github.com/nuxt/module-buil
 ## Installation
 
 ```sh
-$ npm install --save @nuxtjs/feed-next-next
+$ npm install --save @nuxtjs/feed-next
 # OR
-$ yarn add @nuxtjs/feed-next-next
+$ yarn add @nuxtjs/feed-next
 ```
 
 ## Basic Usage

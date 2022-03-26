@@ -1,4 +1,4 @@
-# @nuxtjs/feed-next
+# nuxt-feed-module
 
 ## NOTE
 
@@ -9,9 +9,9 @@ Due to a certain [Nuxt 3 module-builder bug](https://github.com/nuxt/module-buil
 ## Installation
 
 ```sh
-$ npm install --save @nuxtjs/feed-next-next
+$ npm install --save nuxt-feed-module
 # OR
-$ yarn add @nuxtjs/feed-next-next
+$ yarn add nuxt-feed-module
 ```
 
 ## Basic Usage
@@ -22,7 +22,7 @@ $ yarn add @nuxtjs/feed-next-next
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  buildModules: ['@nuxtjs/feed-next'],
+  buildModules: ['nuxt-feed-module'],
   feed: {
     sources: [
       {
@@ -78,7 +78,7 @@ That's where _factory function_ comes into play. It allows one to programmatical
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  modules: ['@nuxtjs/feed-next'],
+  modules: ['nuxt-feed-module'],
   feed: {
     sources() {
       const categories = ['vue', 'vite', 'nuxt', 'vitepress'];
@@ -105,7 +105,7 @@ export default defineNuxtConfig({
 });
 ```
 
-## Migration - comparison with the 2.0.0 version
+## Migration - comparison with the original module
 
 This version aimed to maintain as similar of an API as possible (along with bringing Nuxt 3 compatibility to the table, obviously). However, there are two key changes caused by Nuxt 3 being unable to parse anything else than objects as module options, as well as feed package type definitions: 
 
@@ -119,4 +119,4 @@ This version aimed to maintain as similar of an API as possible (along with brin
 
 ## LICENSE
 
-[MIT License](https://github.com/nuxt-community/feed-module/blob/master/LICENSE)
+MIT

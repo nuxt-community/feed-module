@@ -1,7 +1,7 @@
 {
-  "name": "@nuxtjs/feed-next-docs",
+  "name": "nuxt-feed-module-docs",
   "version": "1.0.0",
-  "description": "Docs for @nuxtjs/feed-next",
+  "description": "Docs for nuxt-feed-module",
   "author": "Maciej Pędzich",
   "scripts": {
     "dev": "nuxt",

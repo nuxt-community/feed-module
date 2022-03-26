@@ -9,7 +9,7 @@ import { FeedSource } from '../types';
 export async function generateFeedFile(this: Nuxt, config: FeedSource) {
   const feed = new Feed({
     ...config.meta,
-    generator: 'https://github.com/nuxt-community/feed-module'
+    generator: 'https://github.com/maciejpedzich/nuxt-feed-module'
   });
 
   await config.create(feed);

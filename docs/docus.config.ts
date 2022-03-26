@@ -1,5 +1,5 @@
 export default {
-  title: '@nuxtjs/feed-next',
+  title: 'nuxt-feed-module',
   url: 'https://feed-nm.netlify.app',
   theme: {
     colors: {
@@ -18,7 +18,7 @@ export default {
   },
   twitter: '@MaciejPedzich',
   github: {
-    repo: 'nuxt-modules/feed',
+    repo: 'nuxt-feed-module',
     branch: 'master',
     releases: true
   }

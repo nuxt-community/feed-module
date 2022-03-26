@@ -1,11 +1,8 @@
 {
-  "name": "@nuxtjs/feed-next",
+  "name": "nuxt-feed-module",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
-  "publishConfig": {
-    "tag": "next"
-  },
   "exports": {
     ".": {
       "import": "./dist/module.mjs",

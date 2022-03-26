@@ -21,18 +21,18 @@ declare module '@nuxt/schema' {
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: '@nuxtjs/feed-next',
+    name: 'nuxt-feed-module',
     configKey: 'feed'
   },
   setup(moduleOptions, nuxt) {
     nuxt.hook('build:before', async () => {
-      const FeedSources = await resolveModuleOptions(moduleOptions.sources);
+      const feedSources = await resolveModuleOptions(moduleOptions.sources);
 
       const generateFileWithNuxtBound = generateFeedFile.bind(
         nuxt
       ) as typeof generateFeedFile;
 
-      await Promise.all(FeedSources.map(generateFileWithNuxtBound));
+      await Promise.all(feedSources.map(generateFileWithNuxtBound));
     });
   }
 });

@@ -1,9 +1,5 @@
 # nuxt-feed-module
 
-## NOTE
-
-Due to a certain [Nuxt 3 module-builder bug](https://github.com/nuxt/module-builder/issues/22), this module only works in development mode on Windows.
-
 📰 Generate RSS/JSON feeds for your Nuxt application
 
 ## Installation

@@ -1,6 +1,6 @@
 export default {
   title: 'nuxt-feed-module',
-  url: 'https://feed-nm.netlify.app',
+  url: 'https://nuxt-feed-module-docs.netlify.app',
   theme: {
     colors: {
       primary: '#F78422',

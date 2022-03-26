@@ -10,7 +10,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "core-js": "^2.6.12",
     "docus": "^2.1.0",
     "nuxt": "^2.2.0",
     "windicss": "^3.4.3"

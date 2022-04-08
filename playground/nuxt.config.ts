@@ -4,11 +4,11 @@ import FeedModule from '..';
 
 import { sources } from './feed/array';
 // Uncomment the import below and comment one above for a factory example
-// Do the opposite to switch back to static array config
+// Do the opposite so as to switch back to the static array config
 // import { sources } from './feed/factory';
 
 export default defineNuxtConfig({
   srcDir: './',
-  buildModules: [FeedModule],
+  modules: [FeedModule],
   feed: { sources }
 });

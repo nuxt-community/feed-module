@@ -1,28 +1,29 @@
 import { resolve, join, dirname } from 'path';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
+import { useNuxt } from '@nuxt/kit';
 import { Feed } from 'feed';
-import { Nuxt } from '@nuxt/schema';
 
 import { FeedSource } from '../types';
 
-export async function generateFeedFile(this: Nuxt, config: FeedSource) {
+export async function generateFeedFile(source: FeedSource) {
+  const nuxt = useNuxt();
   const feed = new Feed({
-    ...config.meta,
-    generator: 'https://github.com/maciejpedzich/nuxt-feed-module'
+    ...source.meta,
+    generator: 'https://github.com/nuxt-community/feed-module'
   });
 
-  await config.create(feed);
-
-  const fileContent = feed[config.type]();
+  const fileContent = feed[source.type]();
   const filePath = resolve(
-    this.options.rootDir,
-    join(this.options.srcDir, '/public', config.path)
+    nuxt.options.rootDir,
+    join(nuxt.options.srcDir, '/public', source.path)
   );
-  const outputDir = dirname(filePath);
+  const fileDirectory = dirname(filePath);
 
-  if (!existsSync(outputDir)) {
-    mkdirSync(outputDir, { recursive: true });
+  await source.create(feed);
+
+  if (!existsSync(fileDirectory)) {
+    mkdirSync(fileDirectory, { recursive: true });
   }
 
   writeFileSync(filePath, fileContent);

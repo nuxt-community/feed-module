@@ -5,7 +5,7 @@
 ## Installation
 
 ```sh
-$ npm install --save @nuxtjs/feed
+$ npm i @nuxtjs/feed
 # OR
 $ yarn add @nuxtjs/feed
 ```
@@ -30,8 +30,8 @@ export default defineNuxtConfig({
           copyright: '2022-present My Cool Blog'
         },
         type: 'rss2', // OR: 'atom1', 'json1'
-        path: '/feed.xml',
-        create(feed) {
+        path: '/rss.xml',
+        async create(feed) {
           // More on that function below
         }
       }
@@ -44,13 +44,12 @@ export default defineNuxtConfig({
 This method is required in order to populate the [feed](https://github.com/jpmonette/feed) object passed as the only `create` function argument. Here's an example using [InShorts v2 API](https://github.com/sumitkolhe/inshorts-api-v2):
 
 ```ts
-import axios from 'axios';
+import { $fetch } from 'ohmyfetch';
 
 async create(feed) {
-  const { data } = await axios.get<{ articles: Article[] }>(
+  const { articles } = await $fetch<{ articles: Article[] }>(
     'https://inshortsv2.vercel.app/news?type=automobile'
   );
-  const { articles } = data;
 
   for (const article of articles) {
     feed.addItem({
@@ -77,7 +76,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/feed'],
   feed: {
     sources() {
-      const categories = ['vue', 'vite', 'nuxt', 'vitepress'];
+      const categories = ['vue', 'nuxt', 'vite', 'vitepress'];
       const currentYear = new Date().getFullYear();
 
       // Factory function HAS TO return a source objects array

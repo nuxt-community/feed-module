@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import axios from 'axios';
+import { $fetch } from 'ohmyfetch';
 
 import { FeedSource, FeedSourcesFactory } from '../../src/module';
 import { Article } from './article-model';
@@ -26,16 +25,15 @@ export const sources: FeedSourcesFactory = () => {
     return {
       meta: {
         id: category,
-        title: `${category}-feed`,
+        title: `Feed about ${category}`,
         link: apiUrl,
         description: 'Sample RSS feed generated from InShorts v2 API articles',
-        copyright: 'Feed module - Maciej Pędzich; InShorts API - Sumit Kolhe'
+        copyright: 'Feed module - Nuxt Community; InShorts API - Sumit Kolhe'
       },
       path: `/feeds/${category}.xml`,
       type: 'rss2',
       async create(feed) {
-        const { data } = await axios.get<{ articles: Article[] }>(apiUrl);
-        const { articles } = data;
+        const { articles } = await $fetch<{ articles: Article[] }>(apiUrl);
 
         for (const article of articles) {
           feed.addItem({

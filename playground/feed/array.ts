@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { $fetch } from 'ohmyfetch';
 
 import { FeedSource } from '../../src/types';
 import { Article } from './article-model';
@@ -10,15 +10,14 @@ export const sources: FeedSource[] = [
       title: 'Science RSS Feed',
       link: 'https://inshortsv2.vercel.app/news?type=science',
       description: 'Sample RSS feed generated from InShorts v2 API articles',
-      copyright: 'Feed module - Maciej Pędzich; InShorts API - Sumit Kolhe'
+      copyright: 'Feed module - Nuxt Community; InShorts API - Sumit Kolhe'
     },
-    path: '/feed.xml',
+    path: '/rss.xml',
     type: 'rss2',
     async create(feed) {
-      const { data } = await axios.get<{ articles: Article[] }>(
+      const { articles } = await $fetch<{ articles: Article[] }>(
         'https://inshortsv2.vercel.app/news?type=science'
       );
-      const { articles } = data;
 
       for (const article of articles) {
         feed.addItem({

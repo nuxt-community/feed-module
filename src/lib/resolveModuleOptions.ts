@@ -1,10 +1,10 @@
 import { FeedSource, FeedSourcesFactory } from '../types';
 
-export async function resolveModuleOptions(
+export function resolveModuleOptions(
   options: FeedSourcesFactory | FeedSource[]
 ) {
   if (typeof options === 'function') {
-    return await options();
+    return options();
   } else if (Array.isArray(options)) {
     return options;
   } else {

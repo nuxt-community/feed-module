@@ -7,4 +7,4 @@ export type FeedSource = {
   create(feed: Feed): Promise<unknown> | unknown;
 };
 
-export type FeedSourcesFactory = () => Promise<FeedSource[]> | FeedSource[];
+export type FeedSourcesFactory = () => FeedSource[];

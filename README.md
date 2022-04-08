@@ -1,13 +1,13 @@
-# nuxt-feed-module
+# @nuxtjs/feed
 
 📰 Generate RSS/JSON feeds for your Nuxt application
 
 ## Installation
 
 ```sh
-$ npm install --save nuxt-feed-module
+$ npm install --save @nuxtjs/feed
 # OR
-$ yarn add nuxt-feed-module
+$ yarn add @nuxtjs/feed
 ```
 
 ## Basic Usage
@@ -18,7 +18,7 @@ $ yarn add nuxt-feed-module
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  buildModules: ['nuxt-feed-module'],
+  modules: ['@nuxtjs/feed'],
   feed: {
     sources: [
       {
@@ -74,7 +74,7 @@ That's where _factory function_ comes into play. It allows one to programmatical
 import { defineNuxtConfig } from 'nuxt3';
 
 export default defineNuxtConfig({
-  modules: ['nuxt-feed-module'],
+  modules: ['@nuxtjs/feed'],
   feed: {
     sources() {
       const categories = ['vue', 'vite', 'nuxt', 'vitepress'];
@@ -101,12 +101,12 @@ export default defineNuxtConfig({
 });
 ```
 
-## Migration - comparison with the original module
+## Migration - comparison with v2
 
-This version aimed to maintain as similar of an API as possible (along with bringing Nuxt 3 compatibility to the table, obviously). However, there are two key changes caused by Nuxt 3 being unable to parse anything else than objects as module options, as well as feed package type definitions: 
+There are only two key changes to note:
 
-- This module accepts an object with a single property called `sources`, containing feed configuration objects
-- Each source object is required to be specified with a `meta` object including the following properties: `id`, `title`, `description`, `link`, and `copyright`
+- This module accepts an object with a single property called `sources`, containing feed configuration objects array or factory function
+- Each source object is required to be specified with a `meta` object which includes the following properties: `id`, `title`, `description`, `link`, and `copyright`
 
 ## Development
 

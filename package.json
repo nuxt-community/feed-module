@@ -1,9 +1,9 @@
 {
-  "name": "nuxt-feed-module",
-  "version": "1.0.1",
+  "name": "@nuxtjs/feed",
+  "version": "3.0.0",
   "license": "MIT",
   "type": "module",
-  "description": "Generate RSS/JSON feeds for your Nuxt 3 application",
+  "description": "Generate RSS/JSON feeds for your Nuxt application",
   "exports": {
     ".": {
       "import": "./dist/module.mjs",
@@ -30,7 +30,6 @@
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
-    "axios": "^0.25.0",
     "eslint": "latest",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

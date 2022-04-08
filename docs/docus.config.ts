@@ -1,6 +1,6 @@
 export default {
-  title: 'nuxt-feed-module',
-  url: 'https://nuxt-feed-module-docs.netlify.app',
+  title: '',
+  url: 'https://feed.nuxtjs.org',
   theme: {
     colors: {
       primary: '#F78422',
@@ -16,9 +16,9 @@ export default {
       }
     }
   },
-  twitter: '@MaciejPedzich',
+  twitter: '@nuxt_js',
   github: {
-    repo: 'nuxt-feed-module',
+    repo: 'nuxt-community/feed-module',
     branch: 'master',
     releases: true
   }

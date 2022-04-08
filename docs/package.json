@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-feed-module-docs",
+  "name": "@nuxtjs/feed-docs",
   "version": "1.0.0",
-  "description": "Docs for nuxt-feed-module",
-  "author": "Maciej Pędzich",
+  "description": "Docs for @nuxtjs/feed",
+  "author": "Nuxt Community",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

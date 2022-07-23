@@ -33,7 +33,9 @@ const sourcesFactory: FeedSourcesFactory = () => sources
 const commonFeedOptions = {
   // This is needed for Atom `updated` and RSS `lastBuildDate` in snapshots not to be changed.
   // Without this defined, the properties are set as the time when feed is created.
-  updated: new Date(Date.UTC(2018, 0, 9))
+  updated: new Date(Date.UTC(2018, 0, 9)),
+  // This is to test if #9 is supported
+  link: 'https://lichter.io/'
 }
 
 describe('feed', () => {

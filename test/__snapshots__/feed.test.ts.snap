@@ -7,14 +7,14 @@ exports[`feed > createFeedTemplate > should returns an object whose \`getContent
     <title/>
     <updated>2018-01-09T00:00:00.000Z</updated>
     <generator>https://github.com/nuxt-community/feed-module</generator>
-    <link rel=\\"alternate\\" href=\\"/feed.atom\\"/>
+    <link rel=\\"alternate\\" href=\\"https://lichter.io/feed.atom\\"/>
 </feed>"
 `;
 
 exports[`feed > createFeedTemplate > should returns an object whose \`getContents\` property is a function that returns correct JSON content 1`] = `
 "{
     \\"version\\": \\"https://jsonfeed.org/version/1\\",
-    \\"home_page_url\\": \\"/feed.json\\",
+    \\"home_page_url\\": \\"https://lichter.io/feed.json\\",
     \\"items\\": []
 }"
 `;
@@ -24,7 +24,7 @@ exports[`feed > createFeedTemplate > should returns an object whose \`getContent
 <rss version=\\"2.0\\">
     <channel>
         <title>undefined</title>
-        <link>/feed.xml</link>
+        <link>https://lichter.io/feed.xml</link>
         <description>undefined</description>
         <lastBuildDate>Tue, 09 Jan 2018 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>

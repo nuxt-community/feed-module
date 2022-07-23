@@ -1,0 +1,34 @@
+// Vitest Snapshot v1
+
+exports[`feed > createFeedTemplate > should returns an object whose \`getContents\` property is a function that returns correct Atom content 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<feed xmlns=\\"http://www.w3.org/2005/Atom\\">
+    <id/>
+    <title/>
+    <updated>2018-01-09T00:00:00.000Z</updated>
+    <generator>https://github.com/nuxt-community/feed-module</generator>
+    <link rel=\\"alternate\\" href=\\"/feed.atom\\"/>
+</feed>"
+`;
+
+exports[`feed > createFeedTemplate > should returns an object whose \`getContents\` property is a function that returns correct JSON content 1`] = `
+"{
+    \\"version\\": \\"https://jsonfeed.org/version/1\\",
+    \\"home_page_url\\": \\"/feed.json\\",
+    \\"items\\": []
+}"
+`;
+
+exports[`feed > createFeedTemplate > should returns an object whose \`getContents\` property is a function that returns correct RSS content 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"utf-8\\"?>
+<rss version=\\"2.0\\">
+    <channel>
+        <title>undefined</title>
+        <link>/feed.xml</link>
+        <description>undefined</description>
+        <lastBuildDate>Tue, 09 Jan 2018 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/nuxt-community/feed-module</generator>
+    </channel>
+</rss>"
+`;

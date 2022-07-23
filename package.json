@@ -43,7 +43,9 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.5",
-    "feed": "^4.2.2"
+    "feed": "^4.2.2",
+    "pathe": "^0.3.2",
+    "ufo": "^0.8.5"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",

@@ -1,4 +1,7 @@
+import type { Nuxt } from '@nuxt/schema'
 import { Feed, FeedOptions } from 'feed'
+import { resolve, join } from 'pathe'
+import { joinURL } from 'ufo'
 import type { ModuleOptions } from './module'
 
 export type FeedSource = {
@@ -11,6 +14,12 @@ export type FeedSource = {
 
 export type FeedSourcesFactory = () => FeedSource[] | Promise<FeedSource[]>
 
+// Ref: Nuxt Kit's `NuxtTemplate` interface
+export type FeedTemplate = {
+  dst: string
+  getContents: () => string | Promise<string>
+}
+
 export async function resolveSources (sources: ModuleOptions['sources']): Promise<FeedSource[]> {
   if (Array.isArray(sources)) {
     return sources
@@ -21,4 +30,45 @@ export async function resolveSources (sources: ModuleOptions['sources']): Promis
   }
 
   throw new TypeError('`sources` option must be an array of feed sources or a function that returns it')
+}
+
+export function createFeedTemplate (nuxt: Nuxt, { source, commonOptions = {}, commonCreate, commonData }: {
+  source: FeedSource,
+  commonOptions?: ModuleOptions['options'],
+  commonCreate?: ModuleOptions['create'],
+  commonData?: ModuleOptions['data']
+}): FeedTemplate {
+  const {
+    options,
+    path: filePath,
+    type,
+    create,
+    data
+  } = source
+  const {
+    options: {
+      rootDir,
+      srcDir,
+      dir: {
+        public: publicDir
+      }
+    }
+  } = nuxt
+
+  return {
+    dst: resolve(rootDir, join(srcDir, publicDir, filePath)),
+    getContents: async () => {
+      const feed = new Feed({
+        generator: 'https://github.com/nuxt-community/feed-module',
+        ...commonOptions,
+        ...options,
+        link: joinURL((options || commonOptions).link || '', filePath)
+      })
+
+      commonCreate && await commonCreate(feed, data, commonData)
+      create && await create(feed, data, commonData)
+
+      return feed[type]()
+    }
+  }
 }

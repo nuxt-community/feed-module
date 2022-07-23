@@ -1,5 +1,5 @@
 import { defineNuxtModule } from '@nuxt/kit'
-import { resolveSources } from './feed'
+import { resolveSources, createFeedTemplate } from './feed'
 import type { FeedSource, FeedSourcesFactory } from './feed'
 
 export interface ModuleOptions {
@@ -22,7 +22,19 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup (options, nuxt) {
     console.log(options)
-    const sources = await resolveSources(options.sources)
-    console.log(sources)
+    const {
+      options: commonOptions,
+      create: commonCreate,
+      data: commonData,
+      sources
+    } = options
+    const _sources = await resolveSources(sources)
+
+    nuxt.hook('build:done', () => {
+      const feedTemplates = _sources.map((source) => {
+        return createFeedTemplate(nuxt, { source, commonOptions, commonCreate, commonData })
+      })
+      console.log(feedTemplates)
+    })
   }
 })

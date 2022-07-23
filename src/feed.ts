@@ -11,7 +11,7 @@ export type FeedSource = {
   path: string
   options?: FeedOptions
   create?(feed: Feed, data: FeedSource['data'], commonData: FeedSource['data']): void | Promise<void>
-  data?: any[]
+  data?: unknown
 }
 
 export type FeedSourcesFactory = () => FeedSource[] | Promise<FeedSource[]>

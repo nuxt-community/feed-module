@@ -1,6 +1,8 @@
+import { constants } from 'node:fs'
+import { access, mkdir, writeFile } from 'node:fs/promises'
 import type { Nuxt } from '@nuxt/schema'
 import { Feed, FeedOptions } from 'feed'
-import { resolve, join } from 'pathe'
+import { resolve, join, dirname } from 'pathe'
 import { joinURL } from 'ufo'
 import type { ModuleOptions } from './module'
 
@@ -71,4 +73,16 @@ export function createFeedTemplate (nuxt: Nuxt, { source, commonOptions = {}, co
       return feed[type]()
     }
   }
+}
+
+export async function writeFeedFile (dst: FeedTemplate['dst'], data: string): Promise<void> {
+  const dir = dirname(dst)
+
+  try {
+    await access(dir, constants.W_OK)
+  } catch {
+    await mkdir(dir, { recursive: true })
+  }
+
+  await writeFile(dst, data)
 }

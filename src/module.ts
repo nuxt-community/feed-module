@@ -1,6 +1,13 @@
 import { defineNuxtModule } from '@nuxt/kit'
+import { resolveSources } from './feed'
+import type { FeedSource, FeedSourcesFactory } from './feed'
 
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  options?: Partial<FeedSource['options']>
+  create?: FeedSource['create']
+  data?: FeedSource['data']
+  sources: FeedSource[] | FeedSourcesFactory
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -10,6 +17,12 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt: '^3.0.0'
     }
   },
-  defaults: {},
-  setup (options, nuxt) {}
+  defaults: {
+    sources: []
+  },
+  async setup (options, nuxt) {
+    console.log(options)
+    const sources = await resolveSources(options.sources)
+    console.log(sources)
+  }
 })

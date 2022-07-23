@@ -35,15 +35,22 @@
     "prepack": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:coverage:serve": "yarn run test:coverage && yarn run serve -p 5000 ./coverage"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.5"
+    "@nuxt/kit": "^3.0.0-rc.5",
+    "feed": "^4.2.2"
   },
   "devDependencies": {
     "@nuxt/module-builder": "latest",
     "@nuxtjs/eslint-config-typescript": "latest",
+    "c8": "^7.12.0",
     "eslint": "latest",
-    "nuxt": "^3.0.0-rc.5"
+    "nuxt": "^3.0.0-rc.5",
+    "vitest": "^0.18.1"
   }
 }

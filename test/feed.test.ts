@@ -1,4 +1,5 @@
 import type { Nuxt } from '@nuxt/schema'
+import type { Author } from 'feed'
 import { expect, it, describe } from 'vitest'
 import { resolveSources, createFeedTemplate } from '../src/feed'
 import type { FeedSource, FeedSourcesFactory } from '../src/feed'
@@ -16,26 +17,47 @@ const nuxtMock = {
 const sources: FeedSource[] = [
   {
     type: 'atom1',
-    path: '/feed.atom'
+    path: '/feed.atom',
+    data: 'Atom 1',
+    create (feed, data) {
+      feed.addCategory(data as string)
+    }
   },
   {
     type: 'json1',
-    path: '/feed.json'
+    path: '/feed.json',
+    data: 'JSON 1',
+    create (feed, data) {
+      feed.addCategory(data as string)
+    }
   },
   {
     type: 'rss2',
-    path: '/feed.xml'
+    path: '/feed.xml',
+    data: 'RSS 2',
+    create (feed, data) {
+      feed.addCategory(data as string)
+    }
   }
 ]
 
 const sourcesFactory: FeedSourcesFactory = () => sources
 
-const commonFeedOptions = {
-  // This is needed for Atom `updated` and RSS `lastBuildDate` in snapshots not to be changed.
-  // Without this defined, the properties are set as the time when feed is created.
-  updated: new Date(Date.UTC(2018, 0, 9)),
-  // This is to test if #9 is supported
-  link: 'https://lichter.io/'
+const commonPropertiesForSources = {
+  commonOptions: {
+    // This is needed for Atom `updated` and RSS `lastBuildDate` in snapshots not to be changed.
+    // Without this defined, the properties are set as the time when feed is created.
+    updated: new Date(Date.UTC(2018, 0, 9)),
+    // This is to test if #9 is supported
+    link: 'https://lichter.io/'
+  },
+  commonData: {
+    name: 'Alexander Lichter',
+    email: 'example@lichter.io'
+  },
+  commonCreate (feed, _, commonData) {
+    feed.addContributor(commonData as Author)
+  }
 }
 
 describe('feed', () => {
@@ -60,17 +82,17 @@ describe('feed', () => {
     })
 
     it('should returns an object whose `getContents` property is a function that returns correct Atom content', async () => {
-      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[0], commonOptions: commonFeedOptions })
+      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[0], ...commonPropertiesForSources })
       expect(await feedTemplate.getContents()).toMatchSnapshot()
     })
 
     it('should returns an object whose `getContents` property is a function that returns correct JSON content', async () => {
-      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[1], commonOptions: commonFeedOptions })
+      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[1], ...commonPropertiesForSources })
       expect(await feedTemplate.getContents()).toMatchSnapshot()
     })
 
     it('should returns an object whose `getContents` property is a function that returns correct RSS content', async () => {
-      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[2], commonOptions: commonFeedOptions })
+      const feedTemplate = createFeedTemplate(nuxtMock, { source: sources[2], ...commonPropertiesForSources })
       expect(await feedTemplate.getContents()).toMatchSnapshot()
     })
   })

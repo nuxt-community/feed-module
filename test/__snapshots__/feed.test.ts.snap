@@ -8,6 +8,11 @@ exports[`feed > createFeedTemplate > should returns an object whose \`getContent
     <updated>2018-01-09T00:00:00.000Z</updated>
     <generator>https://github.com/nuxt-community/feed-module</generator>
     <link rel=\\"alternate\\" href=\\"https://lichter.io/feed.atom\\"/>
+    <category term=\\"Atom 1\\"/>
+    <contributor>
+        <name>Alexander Lichter</name>
+        <email>example@lichter.io</email>
+    </contributor>
 </feed>"
 `;
 
@@ -29,6 +34,7 @@ exports[`feed > createFeedTemplate > should returns an object whose \`getContent
         <lastBuildDate>Tue, 09 Jan 2018 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/nuxt-community/feed-module</generator>
+        <category>RSS 2</category>
     </channel>
 </rss>"
 `;

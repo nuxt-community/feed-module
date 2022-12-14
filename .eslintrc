@@ -3,6 +3,13 @@
     "@nuxtjs/eslint-config-typescript"
   ],
   "rules": {
+    "no-use-before-define": ["off"],
+    "@typescript-eslint/no-use-before-define": ["error", {
+      "functions": false,
+      "classes": false,
+      "variables": false,
+      "typedefs": true
+    }],
     "@typescript-eslint/no-unused-vars": [
       "off"
     ]

@@ -1,6 +1,6 @@
 <template>
   <div>
-    Feed module playground!
+    Index page
   </div>
 </template>
 

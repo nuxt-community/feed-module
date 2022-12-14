@@ -1,11 +1,8 @@
-import { defineNuxtConfig } from 'nuxt/config'
-import MyModule from '..'
+import FeedModule from '..'
 
 export default defineNuxtConfig({
   modules: [
-    MyModule
+    FeedModule
   ],
-  myModule: {
-    addPlugin: true
-  }
+  feed: {}
 })

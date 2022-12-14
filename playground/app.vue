@@ -1,6 +1,6 @@
 <template>
   <div>
-    Nuxt module playground!
+    Feed module playground!
   </div>
 </template>
 

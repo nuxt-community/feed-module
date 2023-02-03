@@ -1,4 +1,4 @@
-jest.mock('async-cache', () => {
+jest.mock('lru-cache', () => {
   return jest.fn().mockImplementation(() => {
     return { get: () => { throw new Error('Error on create feed') } }
   })

@@ -23,13 +23,13 @@
 
 ```bash
 # Using npm
-npm install --save-dev @nuxtjs/feed
+npm install -D @nuxtjs/feed
 
 # Using pnpm
-pnpm install --dev @nuxtjs/feed
+pnpm install -D @nuxtjs/feed
 
 # Using yarn
-yarn add --dev @nuxtjs/feed
+yarn add -D @nuxtjs/feed
 ```
 
 2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`

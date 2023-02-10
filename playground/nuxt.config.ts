@@ -1,8 +1,6 @@
-import FeedModule from '..'
-
 export default defineNuxtConfig({
   modules: [
-    FeedModule
+    '../src/module.ts'
   ],
   feed: {
     sources: [

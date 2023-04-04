@@ -19,6 +19,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/types.d.ts",
       "import": "./dist/module.mjs",
       "require": "./dist/module.cjs"
     }
@@ -32,20 +33,26 @@
     "prepack": "nuxt-module-build",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground"
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0",
+    "@nuxt/kit": "^3.3.3",
     "feed": "^4.2.2",
-    "pathe": "^1.0.0",
-    "ufo": "^1.0.1"
+    "pathe": "^1.1.0",
+    "ufo": "^1.1.1"
   },
   "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.0.0",
-    "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "eslint": "^8.29.0",
-    "nuxt": "^3.0.0"
+    "@nuxt/schema": "^3.3.3",
+    "@nuxt/test-utils": "^3.3.3",
+    "eslint": "^8.37.0",
+    "nuxt": "^3.3.3",
+    "vitest": "^0.29.8"
   },
-  "packageManager": "pnpm@7.25.1"
+  "packageManager": "pnpm@8.1.1"
 }

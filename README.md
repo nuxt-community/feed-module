@@ -2,48 +2,44 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![Github Actions CI][github-actions-ci-src]][github-actions-ci-href]
-[![Codecov][codecov-src]][codecov-href]
 [![License][license-src]][license-href]
+[![Nuxt][nuxt-src]][nuxt-href]
 
-> Feed module enables everyone to have RSS, Atom and Json.
+Feed module enables everyone to have RSS, Atom and Json.
 
-[📖 **Release Notes**](./CHANGELOG.md)
+- [✨ &nbsp;Release Notes](/CHANGELOG.md)
 
 ## Features
 
 - 🪄&nbsp; Three different feed types (ATOM 1.0, JSON 1.0, and RSS 2.0)
 - 👌&nbsp; As many feeds as you like
 - 📦&nbsp; Completely customizable
-- 🚀&nbsp; [Nuxt 3](https://v3.nuxtjs.org/) support
+- 🚀&nbsp; [Nuxt 3](https://nuxt.com) support
 
-## Setup
+## Quick Setup
 
 1. Add `@nuxtjs/feed` dependency to your project
 
 ```bash
-# Using npm
-npm install -D @nuxtjs/feed
-
 # Using pnpm
-pnpm install -D @nuxtjs/feed
-
+pnpm add -D @nuxtjs/feed
 # Using yarn
-yarn add -D @nuxtjs/feed
+yarn add --dev @nuxtjs/feed
+# Using npm
+npm install --save-dev @nuxtjs/feed
 ```
 
-2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.js`
+2. Add `@nuxtjs/feed` to the `modules` section of `nuxt.config.ts`
 
 ```js
-{
+export default defineNuxtConfig({
   modules: [
-    ['@nuxtjs/feed', { /* module options */ }]
-  ],
-  feed: { /* module options */ }
-}
+    '@nuxtjs/feed'
+  ]
+})
 ```
 
-3. [Configure module options](#configuration)
+That's it! You can now use Nuxt Feed Module in your Nuxt app ✨
 
 ## Configuration
 
@@ -51,31 +47,33 @@ TBD
 
 ## Development
 
-- Clone this repository
-- Run `pnpm install` to install dependencies
-- Run `pnpm run dev:prepare` to generate type stubs
-- Use `pnpm run dev` to start [playground](./playground) in development mode
-- Use `pnpm run dev:build` to build Nuxt application of [playground](./playground)
-- Use `pnpm run dev:generate` to generate Nuxt appllication of [playground](./playground)
-
-## License
-
-[MIT License](./LICENSE)
-
-Copyright (c) - Nuxt Community
+```bash
+# Install dependencies
+pnpm install
+# Generate type stubs
+pnpm run dev:prepare
+# Develop with the playground
+pnpm run dev
+# Build the playground
+pnpm run dev:build
+# Run ESLint
+pnpm run lint
+# Run Vitest
+pnpm run test
+pnpm run test:watch
+# Release new version
+pnpm run release
+```
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg
+[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/feed/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-version-href]: https://npmjs.com/package/@nuxtjs/feed
 
-[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/feed.svg
+[npm-downloads-src]: https://img.shields.io/npm/dm/@nuxtjs/feed.svg?style=flat&colorA=18181B&colorB=28CF8D
 [npm-downloads-href]: https://npmjs.com/package/@nuxtjs/feed
 
-[github-actions-ci-src]: https://github.com/nuxt-community/feed-module/workflows/ci/badge.svg
-[github-actions-ci-href]: https://github.com/nuxt-community/feed-module/actions?query=workflow%3Aci
-
-[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/feed-module.svg
-[codecov-href]: https://codecov.io/gh/nuxt-community/feed-module
-
-[license-src]: https://img.shields.io/npm/l/@nuxtjs/feed.svg
+[license-src]: https://img.shields.io/npm/l/@nuxtjs/feed.svg?style=flat&colorA=18181B&colorB=28CF8D
 [license-href]: https://npmjs.com/package/@nuxtjs/feed
+
+[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+[nuxt-href]: https://nuxt.com/modules/module-feed

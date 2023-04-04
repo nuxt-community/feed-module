@@ -1,6 +1,6 @@
 {
   "name": "@nuxtjs/feed",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Feed module enables everyone to have RSS, Atom and Json.",
   "keywords": [
     "nuxtjs",
@@ -13,37 +13,46 @@
   ],
   "license": "MIT",
   "contributors": [
-    "Alexander Lichter <npm@lichter.io>"
+    "Alexander Lichter <npm@lichter.io>",
+    "Nozomu Ikuta"
   ],
-  "main": "lib/module.js",
-  "repository": "nuxt-community/feed-module",
-  "publishConfig": {
-    "access": "public"
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
   },
-  "scripts": {
-    "dev": "nuxt test/fixture",
-    "generate": "nuxt generate test/fixture",
-    "lint": "eslint --ext .js,.vue lib test",
-    "test": "yarn lint && jest",
-    "release": "yarn test && standard-version && git push --follow-tags && npm publish"
-  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
-    "lib"
+    "dist"
   ],
+  "scripts": {
+    "prepack": "nuxt-module-build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
   "dependencies": {
-    "async-cache": "^1.1.0",
-    "consola": "^2.12.1",
-    "feed": "^4.2.0"
+    "@nuxt/kit": "^3.3.3",
+    "feed": "^4.2.2",
+    "pathe": "^1.1.0",
+    "ufo": "^1.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "latest",
-    "@commitlint/config-conventional": "latest",
-    "@nuxtjs/eslint-config": "latest",
-    "@nuxtjs/module-test-utils": "latest",
-    "eslint": "latest",
-    "husky": "latest",
-    "jest": "latest",
-    "nuxt-edge": "latest",
-    "standard-version": "latest"
-  }
+    "@nuxt/eslint-config": "^0.1.1",
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.3.3",
+    "@nuxt/test-utils": "^3.3.3",
+    "eslint": "^8.37.0",
+    "nuxt": "^3.3.3",
+    "vitest": "^0.29.8"
+  },
+  "packageManager": "pnpm@8.1.1"
 }

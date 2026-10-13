@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repository is archived. `@nuxtjs/feed` was built for Nuxt 2, which reached end of life on June 30, 2024.
+
 # Feed module - Everyone deserves RSS, Atom and Json
 
 [![npm version][npm-version-src]][npm-version-href]
